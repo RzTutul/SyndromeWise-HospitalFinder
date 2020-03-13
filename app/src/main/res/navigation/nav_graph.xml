@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/loginFramgemt">
+
+    <fragment
+        android:id="@+id/loginFramgemt"
+        android:name="com.example.hospitalfinder.LoginFramgemt"
+        android:label="fragment_login_framgemt"
+        tools:layout="@layout/fragment_login_framgemt" />
+    <fragment
+        android:id="@+id/registrationFragment"
+        android:name="com.example.hospitalfinder.RegistrationFragment"
+        android:label="fragment_registration"
+        tools:layout="@layout/fragment_registration" />
+</navigation>

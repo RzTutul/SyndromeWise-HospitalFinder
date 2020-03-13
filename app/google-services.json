@@ -1,0 +1,77 @@
+{
+  "project_info": {
+    "project_number": "916202444544",
+    "firebase_url": "https://tourmate-229de.firebaseio.com",
+    "project_id": "tourmate-229de",
+    "storage_bucket": "tourmate-229de.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:916202444544:android:2046b599797798184405e5",
+        "android_client_info": {
+          "package_name": "com.example.hospitalfinder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "916202444544-4cjjm4lnrmt2bcnfsn1p75s1465ubqlm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.hospitalfinder",
+            "certificate_hash": "aaf7eb678602623610a7d15b9f8737ebde8c51e3"
+          }
+        },
+        {
+          "client_id": "916202444544-4kmbpl91r2lghv0qktdh1v8pj5navj8j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD594WqTWWAdvBx9-KB4RE-rhqGXYuJbWk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "916202444544-4kmbpl91r2lghv0qktdh1v8pj5navj8j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:916202444544:android:2d02b88ae423eaed4405e5",
+        "android_client_info": {
+          "package_name": "com.example.tourmate"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "916202444544-4kmbpl91r2lghv0qktdh1v8pj5navj8j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD594WqTWWAdvBx9-KB4RE-rhqGXYuJbWk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "916202444544-4kmbpl91r2lghv0qktdh1v8pj5navj8j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
