@@ -15,4 +15,9 @@
         android:name="com.example.hospitalfinder.RegistrationFragment"
         android:label="fragment_registration"
         tools:layout="@layout/fragment_registration" />
+    <fragment
+        android:id="@+id/mainDashBoard"
+        android:name="com.example.hospitalfinder.MainDashBoard"
+        android:label="fragment_main_dash_board"
+        tools:layout="@layout/fragment_main_dash_board" />
 </navigation>

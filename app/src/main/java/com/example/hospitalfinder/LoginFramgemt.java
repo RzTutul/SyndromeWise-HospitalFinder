@@ -13,7 +13,11 @@ import androidx.navigation.Navigation;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.example.hospitalfinder.modelview.RegistrationViewModel;
 
@@ -44,11 +48,19 @@ public class LoginFramgemt extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         Button button = view.findViewById(R.id.button);
+        ImageView imageView = view.findViewById(R.id.imagelogo);
+        LinearLayout loginLayout = view.findViewById(R.id.loginLayout);
+
+        Animation imagAnimation = AnimationUtils.loadAnimation(getContext(),R.anim.animation1);
+        Animation imagAnimation1 = AnimationUtils.loadAnimation(getContext(),R.anim.animation_above);
+        imageView.startAnimation(imagAnimation);
+        loginLayout.setAnimation(imagAnimation1);
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Navigation.findNavController(view).navigate(R.id.registrationFragment);
+                Navigation.findNavController(view).navigate(R.id.mainDashBoard);
             }
         });
     }

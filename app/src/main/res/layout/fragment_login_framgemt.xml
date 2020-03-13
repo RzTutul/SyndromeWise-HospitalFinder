@@ -7,6 +7,21 @@
     tools:context=".LoginFramgemt">
 
 
+    <ImageButton
+        android:id="@+id/imagelogo"
+        android:background="@drawable/imagelogo"    android:layout_gravity="center"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:scaleType="fitXY"
+        />
+
+<LinearLayout
+    android:id="@+id/loginLayout"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    >
     <EditText
         android:hint="Enter Email"
         android:layout_width="match_parent"
@@ -23,6 +38,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Login"/>
+
+
+</LinearLayout>
 
 
 </LinearLayout>

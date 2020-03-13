@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:icon="@drawable/logodoctor"
+        android:title="Home" />
+    <item
+        android:icon="@drawable/logopescription"
+        android:title="About" />
+    <item android:title="test" />
+    <item android:title="test2" />
+    <item android:title="logout" />
+</menu>
