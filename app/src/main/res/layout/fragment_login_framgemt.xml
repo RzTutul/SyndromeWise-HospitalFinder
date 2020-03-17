@@ -1,46 +1,175 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/bg"
     tools:context=".LoginFramgemt">
 
 
     <ImageButton
         android:id="@+id/imagelogo"
-        android:background="@drawable/imagelogo"    android:layout_gravity="center"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:scaleType="fitXY"
-        />
+        android:layout_gravity="center"
+        android:background="@drawable/imagelogo"
+        android:scaleType="fitXY" />
 
-<LinearLayout
-    android:id="@+id/loginLayout"
-    android:gravity="center"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    >
-    <EditText
-        android:hint="Enter Email"
+
+    <View
+        android:layout_width="200dp"
+        android:layout_height="2dp"
+        android:layout_gravity="center"
+        android:background="#000" />
+
+    <TextView
+        android:id="@+id/loginText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        />
-    <EditText
-        android:hint="Enter Password"
+        android:fontFamily="@font/fontlight"
+        android:gravity="center"
+        android:text="Hospital Finder"
+        android:textColor="#FCF3F3"
+        android:textSize="35sp" />
+
+    <LinearLayout
+        android:padding="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        />
+        android:orientation="vertical"
+        android:id="@+id/loginLayout"
+        >
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="#000">
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Login"/>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/inputEmail"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/round_boder_shape"
+                android:fontFamily="@font/nikoshlight"
+                android:gravity="center"
+                android:hint="Enter email"
+                android:inputType="textEmailAddress" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColorHint="#000"
+            app:passwordToggleEnabled="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/inputPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/round_boder_shape"
+                android:fontFamily="@font/nikoshlight"
+                android:gravity="center"
+                android:hint="          Password"
+                android:inputType="textPassword" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/showErroText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
 
-</LinearLayout>
+        <Button
+            android:id="@+id/loginbtn"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/gradient_button_shape"
+            android:fontFamily="@font/nikoshlight"
+            android:text="Login" />
+
+        <ProgressBar
+            android:id="@+id/loginProgressbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+
+
+        <LinearLayout
+
+            android:id="@+id/forgotPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/nikoshlight"
+                android:text="Forgot Password?"
+                android:textColor="#FFFFFA"
+                android:textSize="15sp" />
+
+            <View
+                android:layout_width="140dp"
+                android:layout_height="1dp"
+                android:layout_gravity="center"
+                android:background="#000" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="90dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/fontlight"
+                android:text="New Here? "
+                android:textColor="#06D6F3"
+                android:textSize="15sp" />
+
+
+            <LinearLayout
+                android:id="@+id/registrationBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/fontlight"
+                    android:text="Sign Up"
+                    android:textColor="#FFFFFF"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <View
+                    android:layout_width="80dp"
+                    android:layout_height="1dp"
+                    android:background="#fff" />
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
 
 
 </LinearLayout>

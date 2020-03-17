@@ -21,6 +21,17 @@
         <item>AB+</item>
         <item>AB-</item>
     </string-array>
+    <string-array name="colors">
+        <item>#9C27B0</item>
+        <item>#009688</item>
+        <item>#00BCD4</item>
+        <item>#FFC107</item>
+        <item>#2196F3</item>
+        <item>#FF5722</item>
+        <item>#4CAF50</item>
+        <item>#F44336</item>
+        <item>#9C27B0</item>
+    </string-array>
 
 
 </resources>

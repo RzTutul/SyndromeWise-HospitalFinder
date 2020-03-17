@@ -5,9 +5,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="5dp"
+    android:background="@drawable/bg"
     tools:context=".RegistrationFragment">
 
     <LinearLayout
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -16,7 +18,7 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_gravity="center"
-            android:src="@drawable/logo_hospital" />
+            android:src="@drawable/logodoctor" />
 
         <View
             android:layout_width="140dp"
@@ -30,7 +32,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/nikoshlight"
-            android:text="Register with TourMate"
+            android:text="RegisterFrom"
             android:textColor="#2196F3"
             android:textSize="20sp" />
     </LinearLayout>
@@ -125,8 +127,9 @@
             android:orientation="vertical">
 
             <Button
+                android:layout_gravity="center"
                 android:id="@+id/registerBtn"
-                android:layout_width="match_parent"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:background="@drawable/button_shape"
@@ -156,7 +159,7 @@
                     android:layout_gravity="center"
                     android:fontFamily="@font/fontlight"
                     android:text="I'm already a member"
-                    android:textColor="#318879" />
+                    android:textColor="#DFE9E8" />
 
                 <View
                     android:layout_width="140dp"

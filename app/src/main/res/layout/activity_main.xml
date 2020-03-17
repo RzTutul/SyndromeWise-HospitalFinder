@@ -15,7 +15,7 @@
             android:id="@+id/my_toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@drawable/backgroup_gradient"
+            android:background="#fff"
             android:elevation="4dp"
             android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
@@ -28,19 +28,56 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_anchor="@id/my_toolbar"
-        app:layout_anchorGravity="bottom|end"
+        app:layout_anchorGravity="bottom|end|right"
         app:drawMenuBelowFab="true"
         app:headerLayout="@layout/drawer_nav_header"
         app:menu="@menu/navigation_menu"
         />
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+    </RelativeLayout>
+
+    <devlight.io.library.ntb.NavigationTabBar
+        android:layout_gravity="bottom"
+        android:id="@+id/ntb"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        app:ntb_animation_duration="400"
+        app:ntb_preview_colors="@array/default_preview"
+        app:ntb_corners_radius="5dp"
+        app:ntb_active_color="#EEDDDD"
+        app:ntb_inactive_color="#D6BDBD"
+        app:ntb_badged="true"
+        app:ntb_titled="true"
+        app:ntb_scaled="true"
+        app:ntb_tinted="true"
+        app:ntb_title_mode="all"
+        app:ntb_badge_position="right"
+        app:ntb_badge_gravity="top"
+        app:ntb_badge_bg_color="#ffff0000"
+        app:ntb_badge_title_color="#ffffffff"
+        app:ntb_typeface="fonts/fon.ttf"
+        app:ntb_badge_use_typeface="true"
+        app:ntb_swiped="true"
+        app:ntb_bg_color="#2196F3"
+        app:ntb_icon_size_fraction="0.5"
+        app:ntb_badge_size="10sp"
+        app:ntb_title_size="10sp"
+
+        />
+
     <fragment
-        android:layout_marginTop="?android:attr/actionBarSize"
         android:id="@+id/nav_host_fragment"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:defaultNavHost="true"
+        android:layout_marginBottom="60dp"
         app:navGraph="@navigation/nav_graph" />
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

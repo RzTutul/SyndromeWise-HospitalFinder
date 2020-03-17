@@ -49,20 +49,15 @@ public class RegistrationFragment extends Fragment {
     String select_gender = "Select Gender";
     String select_blood = "Select Blood Group", dateofBirth;
     private RegistrationViewModel registrationViewModel;
-
     public RegistrationFragment() {
         // Required empty public constructor
     }
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
-        ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
-        (getActivity()).getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
-    }
 
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -119,7 +114,7 @@ public class RegistrationFragment extends Fragment {
                     Toast.makeText(getActivity(), "Select blood group", Toast.LENGTH_SHORT).show();
                 } else {
 
-                    userInformationPojo userinfopojo = new userInformationPojo(null,name,email,phone,select_blood,select_blood,dateofBirth,password);
+                    userInformationPojo userinfopojo = new userInformationPojo(null, name, email, phone, select_blood, select_blood, dateofBirth, password);
                     registrationViewModel.register(userinfopojo);
 
                 }
@@ -130,10 +125,9 @@ public class RegistrationFragment extends Fragment {
         registrationViewModel.stateLiveData.observe(getActivity(), new Observer<RegistrationViewModel.AuthenticationState>() {
             @Override
             public void onChanged(RegistrationViewModel.AuthenticationState authenticationState) {
-                switch (authenticationState)
-                {
+                switch (authenticationState) {
                     case AUTHENTICATED:
-                        Navigation.findNavController(view).navigate(R.id.loginFramgemt);
+                        Navigation.findNavController(view).navigate(R.id.mainDashBoard);
                         break;
                     case UNAUTHENTICATED:
                         break;

@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
@@ -13,6 +14,7 @@ import androidx.navigation.Navigation;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
@@ -44,10 +46,21 @@ public class LoginFramgemt extends Fragment {
     }
 
     @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
+        (getActivity()).getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+    }
+
+    @Override
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        Button button = view.findViewById(R.id.button);
+        LinearLayout regstrationBtn = view.findViewById(R.id.registrationBtn);
+
+        Button loginbtn = view.findViewById(R.id.loginbtn);
         ImageView imageView = view.findViewById(R.id.imagelogo);
         LinearLayout loginLayout = view.findViewById(R.id.loginLayout);
 
@@ -56,12 +69,21 @@ public class LoginFramgemt extends Fragment {
         imageView.startAnimation(imagAnimation);
         loginLayout.setAnimation(imagAnimation1);
 
-        button.setOnClickListener(new View.OnClickListener() {
+        loginbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 Navigation.findNavController(view).navigate(R.id.mainDashBoard);
             }
         });
+
+        regstrationBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(view).navigate(R.id.registrationFragment);
+            }
+        });
+
+
     }
 }

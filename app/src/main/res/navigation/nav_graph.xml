@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/loginFramgemt">
+    app:startDestination="@id/mainDashBoard">
 
     <fragment
         android:id="@+id/loginFramgemt"
@@ -20,4 +20,9 @@
         android:name="com.example.hospitalfinder.MainDashBoard"
         android:label="fragment_main_dash_board"
         tools:layout="@layout/fragment_main_dash_board" />
+    <fragment
+        android:id="@+id/collapsingLayout"
+        android:name="com.example.hospitalfinder.CollapsingLayout"
+        android:label="fragment_collapsing_layout"
+        tools:layout="@layout/fragment_collapsing_layout" />
 </navigation>

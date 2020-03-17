@@ -40,7 +40,14 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics:17.2.2'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
     implementation "androidx.cardview:cardview:1.0.0"
+    //Collapsing toolbar
+    implementation "com.google.android.material:material:1.0.0"
+    implementation 'androidx.palette:palette:1.0.0'
 
-    compile 'com.github.andremion:floatingnavigationview:1.2.0'
+    //ForFoationgNavDrawer
+    implementation 'com.github.andremion:floatingnavigationview:1.2.0'
+
+    //ForBottomNavigation
+    implementation 'devlight.io:navigationtabbar:1.2.5'
 }
 apply plugin: 'com.google.gms.google-services'
