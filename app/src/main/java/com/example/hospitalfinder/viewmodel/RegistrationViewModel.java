@@ -1,4 +1,4 @@
-package com.example.hospitalfinder.modelview;
+package com.example.hospitalfinder.viewmodel;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;

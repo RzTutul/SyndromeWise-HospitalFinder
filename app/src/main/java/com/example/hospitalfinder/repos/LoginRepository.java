@@ -1,14 +1,11 @@
 package com.example.hospitalfinder.repos;
 
 import android.util.Log;
-import android.view.View;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.hospitalfinder.RegistrationFragment;
-import com.example.hospitalfinder.modelview.RegistrationViewModel;
+import com.example.hospitalfinder.viewmodel.RegistrationViewModel;
 import com.example.hospitalfinder.pojos.userInformationPojo;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;

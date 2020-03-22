@@ -74,6 +74,14 @@ public class MainActivity extends AppCompatActivity {
                         mFloatingNavigationView.show();
                         break;
 
+                         case R.id.ambulanceFragmnet:
+                        //  isExit = true;
+                        toolbar.setVisibility(View.VISIBLE);
+                        mFloatingNavigationView.show();
+                        break;
+
+
+
                     default:
                         toolbar.setVisibility(View.GONE);
                         mFloatingNavigationView.hide();

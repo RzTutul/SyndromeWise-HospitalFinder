@@ -20,9 +20,25 @@
         android:name="com.example.hospitalfinder.MainDashBoard"
         android:label="fragment_main_dash_board"
         tools:layout="@layout/fragment_main_dash_board" />
+
     <fragment
-        android:id="@+id/collapsingLayout"
-        android:name="com.example.hospitalfinder.CollapsingLayout"
-        android:label="fragment_collapsing_layout"
-        tools:layout="@layout/fragment_collapsing_layout" />
+        android:id="@+id/nearbyHospitalFragment"
+        android:name="com.example.hospitalfinder.NearbyHospitalFragment"
+        android:label="fragment_map"
+        tools:layout="@layout/fragment_map" />
+    <fragment
+        android:id="@+id/nearbyPharmacy"
+        android:name="com.example.hospitalfinder.NearbyPharmacy"
+        android:label="fragment_nearby_pharmacy"
+        tools:layout="@layout/fragment_nearby_pharmacy" />
+    <fragment
+        android:id="@+id/ambulanceFragmnet"
+        android:name="com.example.hospitalfinder.AmbulanceFragmnet"
+        android:label="fragment_ambulance_fragmnet"
+        tools:layout="@layout/fragment_ambulance_fragmnet" />
+    <fragment
+        android:id="@+id/nearbyAmbulanceFragment"
+        android:name="com.example.hospitalfinder.NearbyAmbulanceFragment"
+        android:label="fragment_nearby_ambulance"
+        tools:layout="@layout/fragment_nearby_ambulance" />
 </navigation>

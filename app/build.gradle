@@ -49,5 +49,9 @@ dependencies {
 
     //ForBottomNavigation
     implementation 'devlight.io:navigationtabbar:1.2.5'
+
+    //For Location
+    implementation 'com.google.android.gms:play-services-location:17.0.0'
+    implementation 'com.google.android.gms:play-services-places:17.0.0'
 }
 apply plugin: 'com.google.gms.google-services'

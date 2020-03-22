@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="15dp"
+    android:layout_marginTop="70dp"
+    android:orientation="vertical"
+    tools:context=".AmbulanceFragmnet">
+
+
+    <androidx.cardview.widget.CardView
+
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:padding="5dp"
+        app:cardCornerRadius="3dp"
+        app:cardElevation="3dp"
+        android:layout_margin="3dp"
+        android:layout_width="match_parent"
+        android:layout_height="100dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#ff3d00">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_margin="20dp"
+                android:background="@drawable/logoambulance" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="Call- 999"
+                android:textColor="#fff"
+                android:fontFamily="@font/nikoshlight"
+                android:textSize="20sp" />
+
+            <ImageView
+                android:layout_marginRight="8dp"
+                android:id="@+id/callBtn"
+                android:padding="5dp"
+                android:layout_centerInParent="true"
+                android:background="@drawable/buttonshapegreen"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentRight="true"
+               android:src="@drawable/ic_phone_black_24dp"
+                />
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+    <androidx.cardview.widget.CardView
+        android:clickable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:id="@+id/nearbyAmbulanceCard"
+        android:padding="5dp"
+        app:cardCornerRadius="3dp"
+        app:cardElevation="3dp"
+        android:layout_margin="3dp"
+        android:layout_width="match_parent"
+        android:layout_height="100dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#37479B">
+
+            <ImageView
+                android:layout_centerInParent="true"
+                android:id="@+id/image"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@drawable/logoambulance" />
+
+            <TextView
+                android:layout_below="@id/image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="Find Neary by ambulance"
+                android:textColor="#fff"
+                android:fontFamily="@font/nikoshlight"
+                android:textSize="15sp" />
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+
+
+</LinearLayout>

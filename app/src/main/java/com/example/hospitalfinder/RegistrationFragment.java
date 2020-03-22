@@ -1,13 +1,11 @@
 package com.example.hospitalfinder;
 
 
-import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -26,9 +24,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.hospitalfinder.modelview.RegistrationViewModel;
+import com.example.hospitalfinder.viewmodel.RegistrationViewModel;
 import com.example.hospitalfinder.pojos.userInformationPojo;
-import com.google.android.material.textfield.TextInputEditText;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
