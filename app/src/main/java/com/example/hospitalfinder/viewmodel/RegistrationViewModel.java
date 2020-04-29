@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.hospitalfinder.pojos.userInformationPojo;
 import com.example.hospitalfinder.repos.LoginRepository;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class RegistrationViewModel extends ViewModel {
     private LoginRepository firebaseLoginRepository;
@@ -39,6 +40,11 @@ public class RegistrationViewModel extends ViewModel {
     {
         stateLiveData =  firebaseLoginRepository.RegisterFireBaseUser(userInformationPojo);
 
+    }
+    public void getLogoutUser()
+    {
+        FirebaseAuth.getInstance().signOut();
+        stateLiveData.postValue(AuthenticationState.UNAUTHENTICATED);
     }
 
 

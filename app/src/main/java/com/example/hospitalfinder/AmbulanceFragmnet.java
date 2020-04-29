@@ -57,7 +57,9 @@ public class AmbulanceFragmnet extends Fragment {
         nearbyAmbulanceCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(v).navigate(R.id.nearbyAmbulanceFragment);
+                Bundle bundle = new Bundle();
+                bundle.putString("ambulance","ambulance");
+                Navigation.findNavController(v).navigate(R.id.NearByLocationFragment,bundle);
             }
         });
 

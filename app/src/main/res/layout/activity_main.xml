@@ -41,6 +41,14 @@
 
     </RelativeLayout>
 
+    <fragment
+        android:id="@+id/nav_host_fragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/nav_graph" />
+
     <devlight.io.library.ntb.NavigationTabBar
         android:layout_gravity="bottom"
         android:id="@+id/ntb"
@@ -70,14 +78,7 @@
 
         />
 
-    <fragment
-        android:id="@+id/nav_host_fragment"
-        android:name="androidx.navigation.fragment.NavHostFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:defaultNavHost="true"
-        android:layout_marginBottom="60dp"
-        app:navGraph="@navigation/nav_graph" />
+
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

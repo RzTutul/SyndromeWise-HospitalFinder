@@ -1,6 +1,5 @@
 package com.example.hospitalfinder;
 
-
 import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
@@ -9,22 +8,26 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
 
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.GeolocationPermissions;
+import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.Toast;
 
 import com.example.hospitalfinder.viewmodel.LocationViewModel;
-import com.example.hospitalfinder.viewmodel.RegistrationViewModel;
 import com.example.hospitalfinder.webviewHelper.GeoWebChromeClient;
 import com.example.hospitalfinder.webviewHelper.GeoWebViewClient;
 import com.google.android.gms.common.api.ResolvableApiException;
@@ -38,34 +41,56 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 
 
-/**
- * A simple {@link Fragment} subclass.
- */
-public class NearbyPharmacy extends Fragment {
-     WebView webView;
+public class NearbyLocationFragment extends Fragment {
+    WebView webView;
+    private LocationViewModel locationViewModel;
+    String findLocaitonName;
 
-     LocationViewModel locationViewModel;
-
-
-    public NearbyPharmacy() {
+    String hospital="hospital",pharmacy="pharmacy",ambulance="ambulance";
+    public NearbyLocationFragment() {
         // Required empty public constructor
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        isLocationPermissionGranted();
+        locationViewModel =
+                ViewModelProviders.of(getActivity())
+                        .get(LocationViewModel.class);
 
-        locationViewModel = ViewModelProviders.of(getActivity()).get(LocationViewModel.class);
+
+        if (hospital.equals(getArguments().getString("hospital")))
+        {
+            findLocaitonName = "hospital";
+        }
+        else if(pharmacy.equals(getArguments().getString("pharmacy")))
+        {
+            findLocaitonName = "pharmacy";
+        }
+        else if (ambulance.equals(getArguments().getString("ambulance")))
+        {
+            findLocaitonName = "ambulance";
+        }
+        else
+        {
+          findLocaitonName = getArguments().getString("locaitonName");
+        }
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_nearby_pharmacy, container, false);
+        return inflater.inflate(R.layout.fragment_map, container, false);
     }
-
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        webView = view.findViewById(R.id.pharmacyMap);
 
 
         LocationSettingsRequest.Builder builder = new LocationSettingsRequest.Builder()
@@ -99,17 +124,40 @@ public class NearbyPharmacy extends Fragment {
                 }
             }
         });
-
+        webView = (WebView) view.findViewById(R.id.webview);
 
         WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
         webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
         webView.getSettings().setBuiltInZoomControls(true);
-        webView.setWebViewClient(new GeoWebViewClient());
+        webView.setWebViewClient(new GeoWebViewClient(getActivity()));
         // Below required for geolocation
         webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setGeolocationEnabled(true);
         webView.setWebChromeClient(new GeoWebChromeClient());
+
+        webView.setOnKeyListener( new View.OnKeyListener()
+        {
+            @Override
+            public boolean onKey( View v, int keyCode, KeyEvent event )
+            {
+                //This is the filter
+                if (event.getAction()!=KeyEvent.ACTION_DOWN)
+                    return true;
+                if (keyCode == KeyEvent.KEYCODE_BACK) {
+                    if (webView.canGoBack()) {
+                        webView.goBack();
+                    }
+                    else {
+                        ((MainActivity)getActivity()).onBackPressed();
+                    }
+                    return true;
+                }
+                return false;
+            }
+            }
+         );
+
 
 
         locationViewModel.locationLD.observe(getActivity(), new Observer<Location>() {
@@ -124,7 +172,7 @@ public class NearbyPharmacy extends Fragment {
                 {
 
 
-                    String url = String.format("https://www.google.com.bd/maps/search/pharmacy/@%f,%f,15z/data=!3m1!4b1?hl=en", location.getLatitude(), location.getLongitude());
+                    String url = String.format("https://www.google.com.bd/maps/search/%s/@%f,%f,15z/data=!3m1!4b1?hl=en",findLocaitonName, location.getLatitude(), location.getLongitude());
                     webView.loadUrl(url);
 
                     webView.setFocusableInTouchMode(true);
@@ -135,6 +183,9 @@ public class NearbyPharmacy extends Fragment {
         });
 
     }
+
+
+
 
     private LocationRequest createLocationRequest() {
         LocationRequest locationRequest = LocationRequest.create();
@@ -161,8 +212,7 @@ public class NearbyPharmacy extends Fragment {
                 PackageManager.PERMISSION_GRANTED){
 
             locationViewModel.getDeviceCurrentLocation();
-            Navigation.findNavController(getActivity(),R.id.nav_host_fragment).navigate(R.id.nearbyHospitalFragment);
-
+            webView.reload();
 
         }
         else
@@ -179,6 +229,7 @@ public class NearbyPharmacy extends Fragment {
         if (requestCode == 123){
             if (resultCode == Activity.RESULT_OK){
                 locationViewModel.getLocationUpdate();
+                webView.reload();
             }
         }
     }
@@ -186,6 +237,9 @@ public class NearbyPharmacy extends Fragment {
     public void onResume() {
         super.onResume();
         locationViewModel.getDeviceCurrentLocation();
+        webView.reload();
     }
+
+
 
 }

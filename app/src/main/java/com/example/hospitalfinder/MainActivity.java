@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;
@@ -15,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.andremion.floatingnavigationview.FloatingNavigationView;
+import com.example.hospitalfinder.viewmodel.RegistrationViewModel;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -25,7 +27,9 @@ import devlight.io.library.ntb.NavigationTabBar;
 public class MainActivity extends AppCompatActivity {
     private FloatingNavigationView mFloatingNavigationView;
     private NavController navController;
-
+    private NavigationTabBar navigationTabBar;
+    private ArrayList<NavigationTabBar.Model> models;
+    RegistrationViewModel registrationViewModel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,8 +38,9 @@ public class MainActivity extends AppCompatActivity {
         final Toolbar toolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(toolbar);
 
+        registrationViewModel = ViewModelProviders.of(MainActivity.this).get(RegistrationViewModel.class);
         mFloatingNavigationView = (FloatingNavigationView) findViewById(R.id.floating_navigation_view);
-
+        navigationTabBar = (NavigationTabBar) findViewById(R.id.ntb);
         mFloatingNavigationView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -43,14 +48,7 @@ public class MainActivity extends AppCompatActivity {
                 mFloatingNavigationView.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#009688")));
             }
         });
-        mFloatingNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(MenuItem item) {
-                Snackbar.make((View) mFloatingNavigationView.getParent(), item.getTitle() + " Selected!", Snackbar.LENGTH_SHORT).show();
-                mFloatingNavigationView.close();
-                return true;
-            }
-        });
+
 
         navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         navController.addOnDestinationChangedListener(new NavController.OnDestinationChangedListener() {
@@ -60,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.loginFramgemt:
                         // isExit = true;
                         toolbar.setVisibility(View.GONE);
+                        navigationTabBar.setVisibility(View.GONE);
                         mFloatingNavigationView.hide();
                         break;
 
@@ -67,14 +66,27 @@ public class MainActivity extends AppCompatActivity {
                         //  isExit = true;
                         toolbar.setVisibility(View.GONE);
                         mFloatingNavigationView.hide();
+                        navigationTabBar.setVisibility(View.GONE);
                         break;
                     case R.id.mainDashBoard:
                         //  isExit = true;
+                        navigationTabBar.setVisibility(View.VISIBLE);
+                        toolbar.setVisibility(View.VISIBLE);
+                        mFloatingNavigationView.show();
+                        break;
+                    case R.id.medicineReminderFragment:
+                        //  isExit = true;
+                        navigationTabBar.setVisibility(View.VISIBLE);
                         toolbar.setVisibility(View.VISIBLE);
                         mFloatingNavigationView.show();
                         break;
 
                          case R.id.ambulanceFragmnet:
+                        //  isExit = true;
+                        toolbar.setVisibility(View.VISIBLE);
+                        mFloatingNavigationView.show();
+                        break;
+                    case R.id.NearByLocationFragment:
                         //  isExit = true;
                         toolbar.setVisibility(View.VISIBLE);
                         mFloatingNavigationView.show();
@@ -95,13 +107,13 @@ public class MainActivity extends AppCompatActivity {
 
         String colors[] = getResources().getStringArray(R.array.colors);
 
-        final NavigationTabBar navigationTabBar = (NavigationTabBar) findViewById(R.id.ntb);
-        final ArrayList<NavigationTabBar.Model> models = new ArrayList<>();
+
+        models = new ArrayList<>();
         models.add(
                 new NavigationTabBar.Model.Builder(
                         getResources().getDrawable(R.drawable.logohospital),
                         Color.parseColor(colors[0])
-                ).title("Heart")
+                ).title("Home")
                         .badgeTitle("NTB")
                         .build()
         );
@@ -109,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
                 new NavigationTabBar.Model.Builder(
                         getResources().getDrawable(R.drawable.logodoctor),
                         Color.parseColor(colors[1])
-                ).title("Cup")
+                ).title("Medicine Reminder")
                         .badgeTitle("with")
                         .build()
         );
@@ -117,18 +129,11 @@ public class MainActivity extends AppCompatActivity {
                 new NavigationTabBar.Model.Builder(
                         getResources().getDrawable(R.drawable.blooddonerlogo),
                         Color.parseColor(colors[2])
-                ).title("Diploma")
+                ).title("Health Calculation")
                         .badgeTitle("state")
                         .build()
         );
-        models.add(
-                new NavigationTabBar.Model.Builder(
-                        getResources().getDrawable(R.drawable.logohospital),
-                        Color.parseColor(colors[3])
-                ).title("Flag")
-                        .badgeTitle("icon")
-                        .build()
-        );
+
 
         navigationTabBar.setOnTabBarSelectedIndexListener(new NavigationTabBar.OnTabBarSelectedIndexListener() {
             @Override
@@ -138,7 +143,11 @@ public class MainActivity extends AppCompatActivity {
                         Navigation.findNavController(MainActivity.this, R.id.nav_host_fragment).navigate(R.id.mainDashBoard);
                         break;
                     case 1:
-                        Navigation.findNavController(MainActivity.this, R.id.nav_host_fragment).navigate(R.id.loginFramgemt);
+                        Navigation.findNavController(MainActivity.this, R.id.nav_host_fragment).navigate(R.id.medicineReminderFragment);
+                        break;
+
+                    case 2:
+                        Navigation.findNavController(MainActivity.this, R.id.nav_host_fragment).navigate(R.id.medicineReminderFragment);
                         break;
 
                     default:
@@ -152,7 +161,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
         navigationTabBar.setViewPager(null, 0);
 
         navigationTabBar.setModels(models);
@@ -176,6 +184,37 @@ public class MainActivity extends AppCompatActivity {
         navigationTabBar.setBadgeSize(10);
         navigationTabBar.setTitleSize(10);*/
         //  navigationTabBar.setIconSizeFraction(0.5);
+
+
+
+
+        mFloatingNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem item) {
+
+                switch (item.getItemId())
+                {
+                    case R.id.homeID:
+                        navigationTabBar.setViewPager(null, 0);
+                        navigationTabBar.setModels(models);
+                        navigationTabBar.setIsTinted(true);
+                        navigationTabBar.setIsSwiped(true);
+                        //navigationTabBar.setViewPager(viewPager, 1);
+                        navigationTabBar.setTitleMode(NavigationTabBar.TitleMode.ACTIVE);
+
+                        Navigation.findNavController(MainActivity.this,R.id.nav_host_fragment).navigate(R.id.mainDashBoard);
+                        break;
+                    case R.id.logoutID:
+                        registrationViewModel.getLogoutUser();
+                        Navigation.findNavController(MainActivity.this, R.id.nav_host_fragment).navigate(R.id.loginFramgemt);
+                        break;
+                }
+
+                Snackbar.make((View) mFloatingNavigationView.getParent(), item.getTitle() + " Selected!", Snackbar.LENGTH_SHORT).show();
+                mFloatingNavigationView.close();
+                return true;
+            }
+        });
 
     }
 

@@ -5,14 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:padding="10dp"
     tools:context=".MainDashBoard">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_marginTop="?android:attr/actionBarSize"
-        android:fitsSystemWindows="true"
-        android:theme="@style/ThemeOverlay.MaterialComponents.Dark">
+        >
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
@@ -52,15 +52,23 @@
             android:orientation="vertical"
             android:padding="20dp">
 
+        <AutoCompleteTextView
+            android:background="@drawable/round_boder_shape"
+            android:id="@+id/autoCompleteSyndrome"
+            android:hint="Enter Syndrome"
+            android:gravity="center"
+            android:textSize="15sp"
+            android:fontFamily="@font/nikoshlight"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:drawableLeft="@drawable/ic_search_black_24dp"
+            android:paddingLeft="10dp"
+            android:imeOptions="actionSearch"
+            android:inputType="textAutoComplete|textAutoCorrect"
 
-            <TextView
-                android:id="@+id/dashboardText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/fontlight"
-                android:text="Health Assistant can give "
-                android:textColor="#000"
-                android:textSize="18dp" />
+            />
+
+
 
 
             <LinearLayout
@@ -88,6 +96,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:layout_marginBottom="50dp"
                 android:id="@+id/dashboardOption"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

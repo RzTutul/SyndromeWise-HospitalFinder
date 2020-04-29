@@ -3,12 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:icon="@drawable/logodoctor"
+        android:id="@+id/homeID"
+        android:icon="@drawable/ic_home_black_24dp"
         android:title="Home" />
     <item
         android:icon="@drawable/logopescription"
         android:title="About" />
     <item android:title="test" />
     <item android:title="test2" />
-    <item android:title="logout" />
+    <item
+        android:id="@+id/logoutID"
+        android:icon="@drawable/ic_exit_to_app_black_24dp"
+        android:title="logout" />
 </menu>
