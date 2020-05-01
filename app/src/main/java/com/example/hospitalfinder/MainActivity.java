@@ -147,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
 
                     case 2:
-                        Navigation.findNavController(MainActivity.this, R.id.nav_host_fragment).navigate(R.id.medicineReminderFragment);
+                        Navigation.findNavController(MainActivity.this, R.id.nav_host_fragment).navigate(R.id.blogpost);
                         break;
 
                     default:

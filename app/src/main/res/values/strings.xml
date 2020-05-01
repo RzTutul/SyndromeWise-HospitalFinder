@@ -3,6 +3,8 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="blog_api_key">AIzaSyBS02dyIkgjIZjwoK1uXD7Uc6mFnZtkiNc</string>
+    <string name="blog_id">7767575629628691681</string>
 
     <string-array name="gender">
         <item>Select Gender</item>
@@ -40,7 +42,6 @@
         <item>Hospital</item>
         <item>Brain Hospital</item>
     </string-array>
-
 
 
     <string name="title_activity_welcome">Home Screen</string>

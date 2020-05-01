@@ -23,14 +23,25 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 
 import com.example.hospitalfinder.viewmodel.RegistrationViewModel;
+import com.github.ybq.android.spinkit.SpinKitView;
+import com.github.ybq.android.spinkit.sprite.Sprite;
+import com.github.ybq.android.spinkit.style.ThreeBounce;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textfield.TextInputEditText;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class LoginFramgemt extends Fragment {
+
+    private TextInputEditText emailET;
+    private TextInputEditText passwordET;
+    private ProgressBar loginProgressBar;
+
 
     private RegistrationViewModel registrationViewModel;
 
@@ -73,19 +84,66 @@ public class LoginFramgemt extends Fragment {
         Button loginbtn = view.findViewById(R.id.loginbtn);
         ImageView imageView = view.findViewById(R.id.imagelogo);
         LinearLayout loginLayout = view.findViewById(R.id.loginLayout);
+         loginProgressBar = view.findViewById(R.id.loginProgressbar);
+         emailET = view.findViewById(R.id.inputEmail);
+         passwordET = view.findViewById(R.id.inputPassword);
 
         Animation imagAnimation = AnimationUtils.loadAnimation(getContext(),R.anim.animation1);
         Animation imagAnimation1 = AnimationUtils.loadAnimation(getContext(),R.anim.animation_above);
         imageView.startAnimation(imagAnimation);
         loginLayout.setAnimation(imagAnimation1);
 
+        //For Change Status bar color
         ChangeStatusBarColor();
 
         loginbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Navigation.findNavController(view).navigate(R.id.mainDashBoard);
+                String email = emailET.getText().toString();
+                String pass = passwordET.getText().toString();
+
+                if (email.isEmpty())
+                {
+                    emailET.setError("Give valid email!");
+                }
+                else if(pass.isEmpty())
+                {
+                    passwordET.setError("Give 6 length password !");
+                }
+                else
+                {   registrationViewModel.loginUser(email,pass);
+                    loginProgressBar.setVisibility(View.VISIBLE);
+                    Sprite threeBounce = new ThreeBounce();
+                    loginProgressBar.setIndeterminateDrawable(threeBounce);
+
+                }
+
+
+
+            }
+        });
+
+        registrationViewModel.stateLiveData.observe(getActivity(), new Observer<RegistrationViewModel.AuthenticationState>() {
+            @Override
+            public void onChanged(RegistrationViewModel.AuthenticationState authenticationState) {
+                switch (authenticationState){
+                    case AUTHENTICATED:
+                        Navigation.findNavController(getActivity(),R.id.nav_host_fragment).navigate(R.id.mainDashBoard);
+                    break;
+                        case UNAUTHENTICATED:
+                        ///
+                }
+            }
+        });
+
+        registrationViewModel.errMsg.observe(getActivity(), new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+
+                Snackbar.make(getView(),""+s,Snackbar.LENGTH_LONG).show();
+                loginProgressBar.setVisibility(View.GONE);
+
             }
         });
 
@@ -93,6 +151,8 @@ public class LoginFramgemt extends Fragment {
             @Override
             public void onClick(View v) {
                 Navigation.findNavController(view).navigate(R.id.registrationFragment);
+                emailET.setText("");
+                passwordET.setText("");
             }
         });
 

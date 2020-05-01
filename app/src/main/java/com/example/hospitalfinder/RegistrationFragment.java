@@ -21,11 +21,15 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.hospitalfinder.viewmodel.RegistrationViewModel;
 import com.example.hospitalfinder.pojos.userInformationPojo;
+import com.github.ybq.android.spinkit.sprite.Sprite;
+import com.github.ybq.android.spinkit.style.ThreeBounce;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -39,6 +43,7 @@ import static androidx.constraintlayout.widget.Constraints.TAG;
 public class RegistrationFragment extends Fragment {
 
     private EditText nameET, emailET, phoneET, dataOfET, passET;
+    private ProgressBar registrationProgress;
     private Spinner genderSP, bloodSP;
     Button registerButton;
     String[] gender;
@@ -76,6 +81,7 @@ public class RegistrationFragment extends Fragment {
 
         genderSP = view.findViewById(R.id.genderSp);
         bloodSP = view.findViewById(R.id.bloodgrpSp);
+        registrationProgress = view.findViewById(R.id.registerProgressBar);
 
         registerButton = view.findViewById(R.id.registerBtn);
 
@@ -106,13 +112,18 @@ public class RegistrationFragment extends Fragment {
 
 
                 if (select_gender.equals("Select Gender")) {
-                    Toast.makeText(getActivity(), "Select gender", Toast.LENGTH_SHORT).show();
+                    Snackbar.make(getView(), "Select gender", Snackbar.LENGTH_SHORT).show();
                 } else if (select_blood.equals("Select Blood Group")) {
-                    Toast.makeText(getActivity(), "Select blood group", Toast.LENGTH_SHORT).show();
+
+                    Snackbar.make(getView(), "Select blood group",Snackbar.LENGTH_SHORT).show();
                 } else {
 
+                    registrationProgress.setVisibility(View.VISIBLE);
                     userInformationPojo userinfopojo = new userInformationPojo(null, name, email, phone, select_blood, select_blood, dateofBirth, password);
                     registrationViewModel.register(userinfopojo);
+
+                    Sprite threeBound = new ThreeBounce();
+                    registrationProgress.setIndeterminateDrawable(threeBound);
 
                 }
 
@@ -131,6 +142,15 @@ public class RegistrationFragment extends Fragment {
                 }
             }
         });
+
+        registrationViewModel.errMsg.observe(getActivity(), new Observer<String>() {
+            @Override
+            public void onChanged(String s) {
+                Snackbar.make(getView(),""+s,Snackbar.LENGTH_LONG).show();
+                registrationProgress.setVisibility(View.GONE);
+            }
+        });
+
         genderSP.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -159,6 +179,8 @@ public class RegistrationFragment extends Fragment {
             }
         });
     }
+
+
 
     private void SelectBirthDayDate() {
         Calendar calendar = Calendar.getInstance();

@@ -48,7 +48,7 @@ public class PescriptionListFragment extends Fragment {
 
         pescriptionViewModel = ViewModelProviders.of(this).get(PescriptionViewModel.class);
 
-        pescriptionViewModel.getAllPescription();
+     //   pescriptionViewModel.getAllPescription();
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_pescription_list, container, false);
     }

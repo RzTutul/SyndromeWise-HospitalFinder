@@ -13,6 +13,7 @@ public class RegistrationViewModel extends ViewModel {
     public MutableLiveData<String> errMsg = new MutableLiveData<>();
     public MutableLiveData<userInformationPojo> userInfoLD = new MutableLiveData<>();
 
+
     public enum AuthenticationState
     {
         AUTHENTICATED,
@@ -20,8 +21,10 @@ public class RegistrationViewModel extends ViewModel {
     }
     public RegistrationViewModel() {
         stateLiveData = new MutableLiveData<>();
-        firebaseLoginRepository = new LoginRepository(stateLiveData);
 
+
+        firebaseLoginRepository = new LoginRepository(stateLiveData);
+        errMsg = firebaseLoginRepository.getErrMsg();
         // errMsg = firebaseLoginRepository.getErrMsg();
 
         if (firebaseLoginRepository.getFirebaseUser() != null)
@@ -36,6 +39,11 @@ public class RegistrationViewModel extends ViewModel {
 
     }
 
+
+    public void loginUser(String email, String pass) {
+
+        stateLiveData =firebaseLoginRepository.loginFirebaseUser(email,pass);
+    }
     public void register(userInformationPojo userInformationPojo)
     {
         stateLiveData =  firebaseLoginRepository.RegisterFireBaseUser(userInformationPojo);

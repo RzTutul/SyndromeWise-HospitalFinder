@@ -48,7 +48,7 @@ public class PescriptionViewModel extends ViewModel {
 
         StorageReference rootRef = FirebaseStorage.getInstance().getReference();
         Uri fileUri = Uri.fromFile(file);
-        final StorageReference imageRef = rootRef.child("PescriptionImages/" + fileUri.getLastPathSegment());
+        final StorageReference imageRef = rootRef.child("PescriptionList/" + fileUri.getLastPathSegment());
 
         ///For image Compress
         Bitmap bmp = null;
@@ -93,6 +93,7 @@ public class PescriptionViewModel extends ViewModel {
                 }
             }
         });
+
 
     }
 

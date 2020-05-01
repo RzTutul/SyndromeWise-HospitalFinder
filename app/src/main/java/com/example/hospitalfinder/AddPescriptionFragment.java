@@ -97,7 +97,10 @@ public class AddPescriptionFragment extends Fragment {
 
                if (file!=null)
                {
-                   pescriptionViewModel.uploadPescriptionToFirebaseStorage(getContext(),file, pescriptionPojo);
+                  String path = file.getPath();
+                   Toast.makeText(getContext(), ""+path, Toast.LENGTH_SHORT).show();
+
+                   pescriptionViewModel.uploadPescriptionToFirebaseStorage(getActivity(),file, pescriptionPojo);
 
                }
                 Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigate(R.id.pescriptionList);

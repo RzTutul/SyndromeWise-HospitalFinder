@@ -53,4 +53,9 @@
         android:name="com.example.hospitalfinder.NotificationFragment"
         android:label="fragment_notification"
         tools:layout="@layout/fragment_notification" />
+    <fragment
+        android:id="@+id/blogpost"
+        android:name="com.example.hospitalfinder.Blogpost"
+        android:label="fragment_blogpost"
+        tools:layout="@layout/fragment_blogpost" />
 </navigation>

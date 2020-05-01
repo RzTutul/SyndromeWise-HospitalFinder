@@ -22,6 +22,9 @@ import static androidx.constraintlayout.widget.Constraints.TAG;
 public class LoginRepository {
 
     private MutableLiveData<RegistrationViewModel.AuthenticationState> stateLiveData;
+   private MutableLiveData<String> errMsg = new MutableLiveData<>();
+
+
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
     DatabaseReference rootRef;
@@ -55,7 +58,6 @@ public class LoginRepository {
                     userInfo.setValue(userInformationPojo).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
-                          //  RegistrationFragment.registerProgressBar.setVisibility(View.GONE);
                         }
                     });
                 }
@@ -71,7 +73,7 @@ public class LoginRepository {
             @Override
             public void onFailure(@NonNull Exception e) {
                 stateLiveData.postValue(RegistrationViewModel.AuthenticationState.UNAUTHENTICATED);
-                //errMsg.postValue(e.getLocalizedMessage());
+                errMsg.postValue(e.getLocalizedMessage());
 
             }
         });
@@ -82,5 +84,28 @@ public class LoginRepository {
 
     public FirebaseUser getFirebaseUser() {
         return firebaseUser;
+    }
+
+    public MutableLiveData<RegistrationViewModel.AuthenticationState> loginFirebaseUser(String email, String pass) {
+
+        firebaseAuth.signInWithEmailAndPassword(email,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                firebaseUser = firebaseAuth.getCurrentUser();
+                stateLiveData.postValue(RegistrationViewModel.AuthenticationState.AUTHENTICATED);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                stateLiveData.postValue(RegistrationViewModel.AuthenticationState.UNAUTHENTICATED);
+                errMsg.postValue(e.getLocalizedMessage());
+            }
+        });
+        return stateLiveData;
+    }
+
+    public MutableLiveData<String> getErrMsg()
+    {
+        return errMsg;
     }
 }

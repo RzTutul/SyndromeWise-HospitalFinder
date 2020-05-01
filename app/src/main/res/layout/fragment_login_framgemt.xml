@@ -69,7 +69,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_margin="10dp"
-                android:background="@drawable/round_boder_shape"
+                android:background="@drawable/boder_edittext"
                 android:drawableLeft="@drawable/ic_email_black_24dp"
                 android:drawablePadding="10dp"
                 android:fontFamily="@font/nikoshlight"
@@ -90,7 +90,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_margin="10dp"
-                android:background="@drawable/round_boder_shape"
+                android:background="@drawable/boder_edittext"
                 android:drawableLeft="@drawable/ic_lock_black_24dp"
                 android:drawablePadding="10dp"
                 android:fontFamily="@font/nikoshlight"
@@ -116,11 +116,15 @@
             android:fontFamily="@font/nikoshlight"
             android:text="Login" />
 
-        <ProgressBar
+        <com.github.ybq.android.spinkit.SpinKitView
+            android:visibility="gone"
             android:id="@+id/loginProgressbar"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="gone" />
+            style="@style/SpinKitView.ThreeBounce"
+            app:SpinKit_Color="@color/colorPrimary"
+
+            />
 
 
         <LinearLayout

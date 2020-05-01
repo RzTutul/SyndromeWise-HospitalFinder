@@ -23,7 +23,8 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <com.andremion.floatingnavigationview.FloatingNavigationView
-        android:backgroundTint="#000"
+        android:layout_marginRight="7dp"
+        android:backgroundTint="#B1E9E4"
         android:id="@+id/floating_navigation_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
