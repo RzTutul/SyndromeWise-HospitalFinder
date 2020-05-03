@@ -20,4 +20,10 @@ public class BlogPostViewModel extends ViewModel {
         return blogPostRepository.getCurrentPost(blogId,apiKey);
 
     }
+
+    public MutableLiveData<BlogResponseBody> getLatestBlogPost(String blogId,String apiKey,String label)
+    {
+
+        return blogPostRepository.getLastestPost(blogId,apiKey,label);
+    }
 }

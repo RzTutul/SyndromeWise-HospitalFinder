@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     private NavigationTabBar navigationTabBar;
     private ArrayList<NavigationTabBar.Model> models;
     RegistrationViewModel registrationViewModel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
                         mFloatingNavigationView.show();
                         break;
 
-                         case R.id.ambulanceFragmnet:
+                    case R.id.ambulanceFragmnet:
                         //  isExit = true;
                         toolbar.setVisibility(View.VISIBLE);
                         mFloatingNavigationView.show();
@@ -92,12 +93,16 @@ public class MainActivity extends AppCompatActivity {
                         mFloatingNavigationView.show();
                         break;
 
+                    case R.id.blogpost:
+                        //  isExit = true;
+                        toolbar.setVisibility(View.VISIBLE);
+                        mFloatingNavigationView.show();
+                        break;
 
 
                     default:
                         toolbar.setVisibility(View.GONE);
                         mFloatingNavigationView.hide();
-
                         //isExit = false;
                         break;
                 }
@@ -186,14 +191,11 @@ public class MainActivity extends AppCompatActivity {
         //  navigationTabBar.setIconSizeFraction(0.5);
 
 
-
-
         mFloatingNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem item) {
 
-                switch (item.getItemId())
-                {
+                switch (item.getItemId()) {
                     case R.id.homeID:
                         navigationTabBar.setViewPager(null, 0);
                         navigationTabBar.setModels(models);
@@ -202,7 +204,7 @@ public class MainActivity extends AppCompatActivity {
                         //navigationTabBar.setViewPager(viewPager, 1);
                         navigationTabBar.setTitleMode(NavigationTabBar.TitleMode.ACTIVE);
 
-                        Navigation.findNavController(MainActivity.this,R.id.nav_host_fragment).navigate(R.id.mainDashBoard);
+                        Navigation.findNavController(MainActivity.this, R.id.nav_host_fragment).navigate(R.id.mainDashBoard);
                         break;
                     case R.id.logoutID:
                         registrationViewModel.getLogoutUser();

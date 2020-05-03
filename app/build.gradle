@@ -83,5 +83,7 @@ dependencies {
 
     //Image Shape
     implementation 'com.github.siyamed:android-shape-imageview:0.9.+@aar'
+
+    implementation 'com.yinglan.shadowimageview:shadowimageview:1.0.4'
 }
 apply plugin: 'com.google.gms.google-services'

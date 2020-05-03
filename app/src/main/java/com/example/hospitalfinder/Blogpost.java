@@ -19,7 +19,9 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.hospitalfinder.adapter.AllPostAdapter;
 import com.example.hospitalfinder.adapter.BlogPostAdapter;
+import com.example.hospitalfinder.adapter.TrendingBlogPostAdapter;
 import com.example.hospitalfinder.blogpostpojo.BlogResponseBody;
 import com.example.hospitalfinder.blogpostpojo.Items;
 import com.example.hospitalfinder.viewmodel.BlogPostViewModel;
@@ -35,8 +37,10 @@ public class Blogpost extends Fragment {
 
     TextView textVie;
     BlogPostViewModel blogPostViewModel;
-RecyclerView postRV;
-ProgressBar loadingPostbar;
+    RecyclerView latestpostRV,trendingpostRV,allPostRV;
+    ProgressBar loadingPostbar;
+    String latestPostLabel = "latestPost";
+
     public Blogpost() {
         // Required empty public constructor
     }
@@ -55,29 +59,67 @@ ProgressBar loadingPostbar;
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        postRV = view.findViewById(R.id.blogRV);
+        latestpostRV = view.findViewById(R.id.latestPostRV);
+        trendingpostRV = view.findViewById(R.id.trendintRV);
+        allPostRV = view.findViewById(R.id.allArticleRV);
         loadingPostbar = view.findViewById(R.id.postProgressBar);
         String blogId = getString(R.string.blog_id);
         String apiKey = getString(R.string.blog_api_key);
         loadingPostbar.setVisibility(View.VISIBLE);
 
-        blogPostViewModel.getCurrentBlogPost(blogId,apiKey).observe(getActivity(), new Observer<BlogResponseBody>() {
+        blogPostViewModel.getLatestBlogPost(blogId, apiKey,latestPostLabel).observe(getActivity(), new Observer<BlogResponseBody>() {
             @Override
             public void onChanged(BlogResponseBody blogResponseBody) {
 
-            List<Items> list=  blogResponseBody.getItems();
+                List<Items> list = blogResponseBody.getItems();
 
-            if (list.size()>0)
-            {
-                loadingPostbar.setVisibility(View.GONE);
+                if (list.size() > 0) {
+                    loadingPostbar.setVisibility(View.GONE);
 
-            }
-                BlogPostAdapter blogPostAdapter = new BlogPostAdapter(getActivity(),list);
-                LinearLayoutManager llm  = new LinearLayoutManager(getActivity());
-                postRV.setLayoutManager(llm);
-                postRV.setAdapter(blogPostAdapter);
+                }
+                BlogPostAdapter blogPostAdapter = new BlogPostAdapter(getActivity(), list);
+                LinearLayoutManager llm = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+                latestpostRV.setLayoutManager(llm);
+                latestpostRV.setAdapter(blogPostAdapter);
 
             }
         });
+
+        blogPostViewModel.getCurrentBlogPost(blogId, apiKey).observe(getActivity(), new Observer<BlogResponseBody>() {
+            @Override
+            public void onChanged(BlogResponseBody blogResponseBody) {
+
+                List<Items> list = blogResponseBody.getItems();
+
+                if (list.size() > 0) {
+                    loadingPostbar.setVisibility(View.GONE);
+
+                }
+                TrendingBlogPostAdapter blogPostAdapter = new TrendingBlogPostAdapter(getActivity(), list);
+                LinearLayoutManager llm = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+                trendingpostRV.setLayoutManager(llm);
+                trendingpostRV.setAdapter(blogPostAdapter);
+
+            }
+        });
+        blogPostViewModel.getCurrentBlogPost(blogId, apiKey).observe(getActivity(), new Observer<BlogResponseBody>() {
+            @Override
+            public void onChanged(BlogResponseBody blogResponseBody) {
+
+                List<Items> list = blogResponseBody.getItems();
+
+                if (list.size() > 0) {
+                    loadingPostbar.setVisibility(View.GONE);
+
+                }
+                AllPostAdapter blogPostAdapter = new AllPostAdapter(getActivity(), list);
+                LinearLayoutManager llm = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
+                allPostRV.setLayoutManager(llm);
+                allPostRV.setAdapter(blogPostAdapter);
+
+            }
+        });
+
+
     }
 }

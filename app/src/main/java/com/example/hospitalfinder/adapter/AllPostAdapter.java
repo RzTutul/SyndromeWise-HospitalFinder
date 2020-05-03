@@ -1,9 +1,6 @@
 package com.example.hospitalfinder.adapter;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,17 +8,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.target.BitmapImageViewTarget;
-import com.bumptech.glide.request.target.CustomTarget;
-import com.bumptech.glide.request.transition.Transition;
 import com.example.hospitalfinder.R;
-import com.example.hospitalfinder.blogpostpojo.Image;
 import com.example.hospitalfinder.blogpostpojo.Items;
-import com.yinglan.shadowimageview.ShadowImageView;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -29,16 +20,13 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
-import static androidx.constraintlayout.widget.Constraints.TAG;
-
-public class BlogPostAdapter extends RecyclerView.Adapter<BlogPostAdapter.PostViewHolder> {
+public class AllPostAdapter extends RecyclerView.Adapter<AllPostAdapter.PostViewHolder> {
 
     private Context context;
     private List<Items> itemsList;
 
-    public BlogPostAdapter(Context context, List<Items> itemsList) {
+    public AllPostAdapter(Context context, List<Items> itemsList) {
         this.context = context;
         this.itemsList = itemsList;
     }
@@ -48,7 +36,7 @@ public class BlogPostAdapter extends RecyclerView.Adapter<BlogPostAdapter.PostVi
     public PostViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
 
-        View view = inflater.inflate(R.layout.blog_post_row,parent,false);
+        View view = inflater.inflate(R.layout.all_blog_post_row,parent,false);
 
 
         return new PostViewHolder(view);
@@ -71,12 +59,7 @@ public class BlogPostAdapter extends RecyclerView.Adapter<BlogPostAdapter.PostVi
             System.out.println("height : " + image.attr("height"));
             System.out.println("width : " + image.attr("width"));
             System.out.println("alt : " + image.attr("alt"));*/
-
-
             Glide.with(context).load(image.attr("src")).into(holder.post_image);
-
-
-
 
 
         }
@@ -94,9 +77,9 @@ public class BlogPostAdapter extends RecyclerView.Adapter<BlogPostAdapter.PostVi
         TextView postText,postTitle;
         public PostViewHolder(@NonNull View itemView) {
             super(itemView);
-            post_image =  itemView.findViewById(R.id.postImage);
-            postText = itemView.findViewById(R.id.postText);
-            postTitle = itemView.findViewById(R.id.postTitle);
+            post_image = itemView.findViewById(R.id.all_postImage);
+            postText = itemView.findViewById(R.id.all_postText);
+            postTitle = itemView.findViewById(R.id.all_postTitle);
 
         }
     }
