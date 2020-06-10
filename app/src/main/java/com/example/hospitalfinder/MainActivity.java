@@ -100,6 +100,8 @@ public class MainActivity extends AppCompatActivity {
                         break;
 
 
+
+
                     default:
                         toolbar.setVisibility(View.GONE);
                         mFloatingNavigationView.hide();
@@ -116,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
         models = new ArrayList<>();
         models.add(
                 new NavigationTabBar.Model.Builder(
-                        getResources().getDrawable(R.drawable.logohospital),
+                        getResources().getDrawable(R.drawable.ic_home_black_24dp),
                         Color.parseColor(colors[0])
                 ).title("Home")
                         .badgeTitle("NTB")
@@ -124,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
         );
         models.add(
                 new NavigationTabBar.Model.Builder(
-                        getResources().getDrawable(R.drawable.logodoctor),
+                        getResources().getDrawable(R.drawable.ic_notifications_active_black_24dp),
                         Color.parseColor(colors[1])
                 ).title("Medicine Reminder")
                         .badgeTitle("with")
@@ -132,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
         );
         models.add(
                 new NavigationTabBar.Model.Builder(
-                        getResources().getDrawable(R.drawable.blooddonerlogo),
+                        getResources().getDrawable(R.drawable.ic_web_black_24dp),
                         Color.parseColor(colors[2])
                 ).title("Health Calculation")
                         .badgeTitle("state")
@@ -148,7 +150,7 @@ public class MainActivity extends AppCompatActivity {
                         Navigation.findNavController(MainActivity.this, R.id.nav_host_fragment).navigate(R.id.mainDashBoard);
                         break;
                     case 1:
-                        Navigation.findNavController(MainActivity.this, R.id.nav_host_fragment).navigate(R.id.medicineReminderFragment);
+                        Navigation.findNavController(MainActivity.this, R.id.nav_host_fragment).navigate(R.id.calcultionDashBoard);
                         break;
 
                     case 2:

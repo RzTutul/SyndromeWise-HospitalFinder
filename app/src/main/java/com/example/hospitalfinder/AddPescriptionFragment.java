@@ -3,6 +3,7 @@ package com.example.hospitalfinder;
 
 import android.Manifest;
 import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -25,6 +26,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -36,6 +38,7 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -59,6 +62,8 @@ public class AddPescriptionFragment extends Fragment {
     PescriptionPojo pescriptionPojo;
 
     PescriptionViewModel pescriptionViewModel;
+
+    String apoinmentDate;
 
     public AddPescriptionFragment() {
         // Required empty public constructor
@@ -85,6 +90,13 @@ public class AddPescriptionFragment extends Fragment {
         savePescriptionBtn = view.findViewById(R.id.savePescriptionBtn);
         selectPescriptionImage = view.findViewById(R.id.selectImage);
 
+        apoinmentDateET.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectNextApoinmentDate();
+            }
+        });
+
         savePescriptionBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -93,14 +105,15 @@ public class AddPescriptionFragment extends Fragment {
                 String doctorPhone = doctorPhoneET.getText().toString();
                 String apoinmentDate = apoinmentDateET.getText().toString();
 
-               pescriptionPojo = new PescriptionPojo(null,null, hospitalName, doctorName, doctorPhone, apoinmentDate, null);
+               pescriptionPojo = new PescriptionPojo(null, hospitalName, doctorName, doctorPhone, apoinmentDate, "Urll");
 
+               pescriptionViewModel.addPescription(pescriptionPojo);
                if (file!=null)
                {
                   String path = file.getPath();
                    Toast.makeText(getContext(), ""+path, Toast.LENGTH_SHORT).show();
 
-                   pescriptionViewModel.uploadPescriptionToFirebaseStorage(getActivity(),file, pescriptionPojo);
+                   //pescriptionViewModel.uploadPescriptionToFirebaseStorage(getActivity(),file, pescriptionPojo);
 
                }
                 Navigation.findNavController(getActivity(), R.id.nav_host_fragment).navigate(R.id.pescriptionList);
@@ -118,6 +131,25 @@ public class AddPescriptionFragment extends Fragment {
 
 
     }
+
+    private void selectNextApoinmentDate() {
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+        DatePickerDialog datePickerDialog = new DatePickerDialog(getActivity(), dateSetListener, year, month, day);
+        datePickerDialog.show();
+    }
+    private DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+            Calendar calendar = Calendar.getInstance();
+            calendar.set(year, month, dayOfMonth);
+            apoinmentDate = new SimpleDateFormat("EEEE, dd-MMMM-yyyy")
+                    .format(calendar.getTime());
+            apoinmentDateET.setText(apoinmentDate);
+        }
+    };
 
     private void pictureSelected() {
 

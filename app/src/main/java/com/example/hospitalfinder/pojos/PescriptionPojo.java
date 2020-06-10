@@ -2,7 +2,6 @@ package com.example.hospitalfinder.pojos;
 
 public class PescriptionPojo {
     String p_id;
-    String user_Id;
     String hospitalName;
     String doctorName;
     String doctorPhone;
@@ -21,23 +20,7 @@ public class PescriptionPojo {
         this.pesriptionImage = pesriptionImage;
     }
 
-    public PescriptionPojo(String p_id, String user_Id, String hospitalName, String doctorName, String doctorPhone, String apoinmentDate, String pesriptionImage) {
-        this.p_id = p_id;
-        this.user_Id = user_Id;
-        this.hospitalName = hospitalName;
-        this.doctorName = doctorName;
-        this.doctorPhone = doctorPhone;
-        this.apoinmentDate = apoinmentDate;
-        this.pesriptionImage = pesriptionImage;
-    }
 
-    public String getUser_Id() {
-        return user_Id;
-    }
-
-    public void setUser_Id(String user_Id) {
-        this.user_Id = user_Id;
-    }
 
     public String getP_id() {
         return p_id;

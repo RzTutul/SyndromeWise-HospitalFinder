@@ -5,6 +5,7 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
+import com.example.hospitalfinder.pojos.DonnerPojo;
 import com.example.hospitalfinder.viewmodel.RegistrationViewModel;
 import com.example.hospitalfinder.pojos.userInformationPojo;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -14,8 +15,14 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static androidx.constraintlayout.widget.Constraints.TAG;
 
@@ -23,6 +30,7 @@ public class LoginRepository {
 
     private MutableLiveData<RegistrationViewModel.AuthenticationState> stateLiveData;
    private MutableLiveData<String> errMsg = new MutableLiveData<>();
+   private MutableLiveData<List<DonnerPojo>> donnerLD = new MutableLiveData<>();
 
 
     FirebaseAuth firebaseAuth;
@@ -30,6 +38,7 @@ public class LoginRepository {
     DatabaseReference rootRef;
     DatabaseReference userRef;
     DatabaseReference userInfo;
+    DatabaseReference donnerList;
 
     public LoginRepository(MutableLiveData<RegistrationViewModel.AuthenticationState> stateLiveData) {
         firebaseAuth = FirebaseAuth.getInstance();
@@ -107,5 +116,47 @@ public class LoginRepository {
     public MutableLiveData<String> getErrMsg()
     {
         return errMsg;
+    }
+
+    public void addDonnerTOFirebase(DonnerPojo donnerPojo) {
+        rootRef = FirebaseDatabase.getInstance().getReference();
+        donnerList = rootRef.child("DonnerList");
+
+        String donner_id= donnerList.push().getKey();
+        donnerPojo.setDonnerID(donner_id);
+        donnerList.child(donner_id).setValue(donnerPojo).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+
+            }
+        });
+    }
+
+    public MutableLiveData<List<DonnerPojo>> getDonnerList() {
+        rootRef = FirebaseDatabase.getInstance().getReference();
+        donnerList = rootRef.child("DonnerList");
+        donnerList.keepSynced(true);
+
+        donnerList.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                List<DonnerPojo> donnerPojoList = new ArrayList<>();
+
+                for (DataSnapshot dataSnapshot1: dataSnapshot.getChildren())
+                {
+                    donnerPojoList.add(dataSnapshot1.getValue(DonnerPojo.class));
+
+                }
+                donnerLD.postValue(donnerPojoList);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        return donnerLD;
     }
 }

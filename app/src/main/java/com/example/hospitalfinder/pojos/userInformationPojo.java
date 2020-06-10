@@ -7,21 +7,41 @@ public class userInformationPojo {
     private String userPhone;
     private String userGender;
     private String userBloodgrp;
+    private String userDonnerStatus;
+    private String userDistrict;
     private String userDateofBith;
     private String userPassword;
 
     public userInformationPojo() {
     }
 
-    public userInformationPojo(String uesrID, String userName, String userEmail, String userPhone, String userGender, String userBloodgrp, String userDateofBith, String userPassword) {
+    public userInformationPojo(String uesrID, String userName, String userEmail, String userPhone, String userGender, String userBloodgrp, String userDonnerStatus, String userDistrict, String userDateofBith, String userPassword) {
         this.uesrID = uesrID;
         this.userName = userName;
         this.userEmail = userEmail;
         this.userPhone = userPhone;
         this.userGender = userGender;
         this.userBloodgrp = userBloodgrp;
+        this.userDonnerStatus = userDonnerStatus;
+        this.userDistrict = userDistrict;
         this.userDateofBith = userDateofBith;
         this.userPassword = userPassword;
+    }
+
+    public String getUserDistrict() {
+        return userDistrict;
+    }
+
+    public void setUserDistrict(String userDistrict) {
+        this.userDistrict = userDistrict;
+    }
+
+    public String getUserDonnerStatus() {
+        return userDonnerStatus;
+    }
+
+    public void setUserDonnerStatus(String userDonnerStatus) {
+        this.userDonnerStatus = userDonnerStatus;
     }
 
     public String getUesrID() {

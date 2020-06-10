@@ -42,6 +42,9 @@ public class PescriptionViewModel extends ViewModel {
         UploadTask uploadTask = imageRef.putFile(fileUri);
 */
         //MomentGallary.uploadProgressBar.setVisibility(View.VISIBLE);
+
+        pescriptionRespos.AddNewPescription(pescriptionPojo);
+
         final ProgressDialog pd = new ProgressDialog(context);
         pd.setMessage("Wait Image Uploading...");
         pd.show();
@@ -85,8 +88,8 @@ public class PescriptionViewModel extends ViewModel {
 
                     pd.dismiss();
                     Uri downloadUri = task.getResult();
-                    pescriptionPojo.setPesriptionImage(downloadUri.toString());
-                    pescriptionRespos.AddNewPescription(pescriptionPojo);
+                   // pescriptionPojo.setPesriptionImage(downloadUri.toString());
+                    //pescriptionRespos.AddNewPescription(pescriptionPojo);
                 } else {
                     // Handle failures
                     // ...
@@ -102,4 +105,9 @@ public class PescriptionViewModel extends ViewModel {
         pescriptionLD = pescriptionRespos.getAllPescription();
     }
 
+    public void addPescription(PescriptionPojo pescriptionPojo) {
+
+        pescriptionRespos.AddNewPescription(pescriptionPojo);
+
+    }
 }

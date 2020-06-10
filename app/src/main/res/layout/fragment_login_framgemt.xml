@@ -142,7 +142,7 @@
                 android:layout_gravity="center"
                 android:fontFamily="@font/nikoshlight"
                 android:text="Forgot Password?"
-                android:textColor="#FFFFFA"
+                android:textColor="@android:color/holo_blue_light"
                 android:textSize="15sp" />
 
             <View
@@ -183,14 +183,14 @@
                     android:layout_gravity="center"
                     android:fontFamily="@font/fontlight"
                     android:text="Sign Up"
-                    android:textColor="#FFFFFF"
-                    android:textSize="20sp"
+                    android:textColor="#32d"
+                    android:textSize="18sp"
                     android:textStyle="bold" />
 
                 <View
-                    android:layout_width="80dp"
+                    android:layout_width="70dp"
                     android:layout_height="1dp"
-                    android:background="#fff" />
+                    android:background="#32f" />
 
             </LinearLayout>
 

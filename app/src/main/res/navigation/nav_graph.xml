@@ -58,4 +58,19 @@
         android:name="com.example.hospitalfinder.Blogpost"
         android:label="fragment_blogpost"
         tools:layout="@layout/fragment_blogpost" />
+    <fragment
+        android:id="@+id/calcultionDashBoard"
+        android:name="com.example.hospitalfinder.CalcultionDashBoard"
+        android:label="fragment_calcultion_dash_board"
+        tools:layout="@layout/fragment_calcultion_dash_board" />
+    <fragment
+        android:id="@+id/blogPostDetailsFragment"
+        android:name="com.example.hospitalfinder.BlogPostDetailsFragment"
+        android:label="fragment_blog_post_details"
+        tools:layout="@layout/fragment_blog_post_details" />
+    <fragment
+        android:id="@+id/bloodDonnerListFragment"
+        android:name="com.example.hospitalfinder.BloodDonnerListFragment"
+        android:label="fragment_blood_donner_list"
+        tools:layout="@layout/fragment_blood_donner_list" />
 </navigation>

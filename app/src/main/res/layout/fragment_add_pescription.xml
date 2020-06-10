@@ -23,6 +23,7 @@
             android:id="@+id/hospitalNameET"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="textPersonName"
             android:hint="Enter Hospital Name" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -31,6 +32,7 @@
         android:layout_height="wrap_content">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:inputType="textPersonName"
             android:id="@+id/doctorNameET"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -55,6 +57,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <com.google.android.material.textfield.TextInputEditText
+            android:focusable="false"
             android:id="@+id/selectApointmentDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -64,7 +67,7 @@
     <Button
         android:id="@+id/savePescriptionBtn"
         android:background="@drawable/gradient_button_shape"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:text="Save"
         android:layout_gravity="center"

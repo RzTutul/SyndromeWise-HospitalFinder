@@ -59,7 +59,7 @@ public class MedicineReminderFragment extends Fragment {
                 medName = medicineName.getText().toString();
                 Data inputdata = new Data.Builder().putString("msg",medName).build();
                 Toast.makeText(getActivity(), ""+medName, Toast.LENGTH_SHORT).show();
-                OneTimeWorkRequest oneTimeWorkRequest =new OneTimeWorkRequest.Builder(NotificaitonWorker.class).setInitialDelay(10, TimeUnit.SECONDS).setInputData(inputdata).build();
+                OneTimeWorkRequest oneTimeWorkRequest =new OneTimeWorkRequest.Builder(NotificaitonWorker.class).setInitialDelay(1, TimeUnit.DAYS).setInputData(inputdata).build();
                 WorkManager.getInstance(getContext()).enqueue(oneTimeWorkRequest);
 
 

@@ -25,6 +25,7 @@ import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.hospitalfinder.pojos.DonnerPojo;
 import com.example.hospitalfinder.viewmodel.RegistrationViewModel;
 import com.example.hospitalfinder.pojos.userInformationPojo;
 import com.github.ybq.android.spinkit.sprite.Sprite;
@@ -44,13 +45,85 @@ public class RegistrationFragment extends Fragment {
 
     private EditText nameET, emailET, phoneET, dataOfET, passET;
     private ProgressBar registrationProgress;
-    private Spinner genderSP, bloodSP;
+    private Spinner genderSP, bloodSP,donnerSP,districSP;
     Button registerButton;
     String[] gender;
     String[] bloodgroup;
+    String [] donnerStatus  ={"Are you a blood donner?","Yes","No"};
     String select_gender = "Select Gender";
+    String bloodDonner ;
     String select_blood = "Select Blood Group", dateofBirth;
+    String select_distric ="Select District";
+
     private RegistrationViewModel registrationViewModel;
+
+   String[] districList ={
+           "Select District",
+           "Bagerhat",
+           "Bandarban",
+           "Barguna",
+           "Barisal",
+           "Bhola",
+           "Bogra",
+           "Brahmanbaria",
+           "Chandpur",
+           "Chittagong",
+           "Chuadanga",
+           "Comilla",
+           "Cox's Bazar",
+           "Dhaka",
+           "Dinajpur",
+           "Faridpur",
+           "Feni",
+           "Gaibandha",
+           "Gazipur",
+           "Gopalganj",
+           "Habiganj",
+           "Jaipurhat",
+           "Jamalpur",
+           "Jessore",
+           "Jhalakati",
+           "Jhenaidah",
+           "Khagrachari",
+           "Khulna",
+           "Kishoreganj",
+           "Kurigram",
+           "Kushtia",
+           "Lakshmipur",
+           "Lalmonirhat",
+           "Madaripur",
+           "Magura",
+           "Manikganj",
+           "Meherpur",
+           "Moulvibazar",
+           "Munshiganj",
+           "Mymensingh",
+           "Naogaon",
+           "Narail",
+           "Narayanganj",
+           "Narsingdi",
+           "Natore",
+           "Nawabganj",
+           "Netrakona",
+           "Nilphamari",
+           "Noakhali",
+           "Pabna",
+           "Panchagarh",
+           "Parbattya Chattagram",
+           "Patuakhali",
+           "Pirojpur",
+           "Rajbari",
+           "Rajshahi",
+           "Rangpur",
+           "Satkhira",
+           "Shariatpur",
+           "Sherpur",
+           "Sirajganj",
+           "Sunamganj",
+           "Sylhet",
+           "Tangail",
+           "Thakurgaon"
+   };
     public RegistrationFragment() {
         // Required empty public constructor
     }
@@ -81,6 +154,8 @@ public class RegistrationFragment extends Fragment {
 
         genderSP = view.findViewById(R.id.genderSp);
         bloodSP = view.findViewById(R.id.bloodgrpSp);
+        donnerSP = view.findViewById(R.id.donnerSP);
+        districSP = view.findViewById(R.id.districSP);
         registrationProgress = view.findViewById(R.id.registerProgressBar);
 
         registerButton = view.findViewById(R.id.registerBtn);
@@ -91,8 +166,12 @@ public class RegistrationFragment extends Fragment {
         ArrayAdapter<String> genderAdpaer = new ArrayAdapter<>(getActivity(), R.layout.spinner_layout, gender);
 
         ArrayAdapter<String> bloodAdapter = new ArrayAdapter<>(getActivity(), R.layout.spinner_layout, bloodgroup);
+        ArrayAdapter<String> donnerAdapter = new ArrayAdapter<>(getActivity(), R.layout.spinner_layout, donnerStatus);
+        ArrayAdapter<String> disticAdapter = new ArrayAdapter<>(getActivity(), R.layout.spinner_layout, districList);
         genderSP.setAdapter(genderAdpaer);
         bloodSP.setAdapter(bloodAdapter);
+        donnerSP.setAdapter(donnerAdapter);
+        districSP.setAdapter(disticAdapter);
 
         dataOfET.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -116,11 +195,31 @@ public class RegistrationFragment extends Fragment {
                 } else if (select_blood.equals("Select Blood Group")) {
 
                     Snackbar.make(getView(), "Select blood group",Snackbar.LENGTH_SHORT).show();
-                } else {
+                }
+                else if (bloodDonner.equals("Are you a blood donner?"))
+                {
+                    Snackbar.make(getView(), "Select Donner Status",Snackbar.LENGTH_SHORT).show();
+
+                }
+                else if (select_distric.equals("Select District")) {
+                    Snackbar.make(getView(), "Select District", Snackbar.LENGTH_SHORT).show();
+
+                }
+
+                else {
 
                     registrationProgress.setVisibility(View.VISIBLE);
-                    userInformationPojo userinfopojo = new userInformationPojo(null, name, email, phone, select_blood, select_blood, dateofBirth, password);
+                    userInformationPojo userinfopojo = new userInformationPojo(null, name, email, phone, select_blood, select_blood,bloodDonner,select_distric, dateofBirth, password);
+
                     registrationViewModel.register(userinfopojo);
+
+                    if (bloodDonner.equals("Yes"))
+                    {
+                        DonnerPojo donnerPojo = new DonnerPojo(null,name,select_gender,phone,select_distric);
+                        registrationViewModel.AddDonnerList(donnerPojo);
+                    }
+
+
 
                     Sprite threeBound = new ThreeBounce();
                     registrationProgress.setIndeterminateDrawable(threeBound);
@@ -178,6 +277,34 @@ public class RegistrationFragment extends Fragment {
 
             }
         });
+
+
+        donnerSP.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                bloodDonner = parent.getItemAtPosition(position).toString();
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+         districSP.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                select_distric = parent.getItemAtPosition(position).toString();
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
     }
 
 

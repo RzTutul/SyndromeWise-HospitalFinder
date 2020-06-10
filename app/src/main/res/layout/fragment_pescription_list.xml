@@ -3,12 +3,54 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginBottom="55dp"
     tools:context=".PescriptionListFragment">
 
   <androidx.recyclerview.widget.RecyclerView
       android:id="@+id/pescriptionRV"
       android:layout_width="match_parent"
       android:layout_height="match_parent"/>
+
+  <androidx.cardview.widget.CardView
+      android:visibility="gone"
+      android:id="@+id/addPesCard"
+      android:layout_margin="10dp"
+      android:layout_width="match_parent"
+      android:layout_height="100dp"
+      android:layout_centerInParent="true"
+      app:cardCornerRadius="15dp"
+      app:cardElevation="5dp"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+      >
+      <TextView
+          android:layout_marginTop="25dp"
+          android:layout_gravity="center"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:fontFamily="sans-serif-smallcaps"
+          android:textSize="20dp"
+          android:textColor="#000"
+          android:text="Empty Pescription"
+          />
+      <TextView
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-smallcaps"
+        android:textSize="15dp"
+        android:textColor="#000"
+        android:text="Tap+ to Add One"
+        />
+    </LinearLayout>
+
+
+  </androidx.cardview.widget.CardView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/addPescriptionBtn"

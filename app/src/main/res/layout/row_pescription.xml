@@ -2,28 +2,29 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="200dp"
+    android:layout_height="170dp"
     android:orientation="vertical"
-    android:padding="10dp">
+    android:padding="3dp">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="170dp"
         android:layout_margin="3dp"
         android:elevation="5dp"
-        app:cardCornerRadius="2dp"
+        app:cardCornerRadius="5dp"
+        app:cardBackgroundColor="@color/colorCardMap"
         >
         <LinearLayout
-            android:background="@color/colorCardProfile"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal">
             <ImageView
                 android:id="@+id/rowPescriptionImage"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
                 android:layout_weight="1"
-                android:src="@drawable/hosiptal_icon" />
+                android:src="@drawable/pescriptionimage" />
 
             <LinearLayout
                 android:gravity="center"
@@ -33,27 +34,65 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:textColor="#000"
+                    android:textSize="20sp"
+                    android:fontFamily="sans-serif-smallcaps"
                     android:id="@+id/hospitalnameTV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Ibne Shina" />
+                    android:text="Ibne Shina Hospital" />
 
                 <TextView
+                    android:textColor="#000"
+                    android:fontFamily="@font/nikoshlight"
                     android:id="@+id/doctorNameTV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Dr. Ibne Shina" />
                 <TextView
+                    android:fontFamily="sans-serif-smallcaps"
+                    android:textColor="#000"
                     android:id="@+id/doctorPhoneTV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="01924250146"/>
 
+                <LinearLayout
+                    android:layout_marginTop="15dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    >
+                    <TextView
+                        android:textColor="@android:color/white"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Next Appoitnment-"
+                        android:textSize="12sp"
+                        android:fontFamily="@font/nikoshlight"
+                        />
+                    <TextView
+                        android:layout_marginLeft="3dp"
+                        android:id="@+id/apoinmentDateTV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#fff"
+                        android:fontFamily="sans-serif-smallcaps"
+                        android:text="12/3/19" />
+
+                </LinearLayout>
+
+
                 <TextView
-                    android:id="@+id/apoinmentDateTV"
+                    android:id="@+id/dayLeftTV"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@android:color/white"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="12/3/19" />
+                    android:text="2 days Left"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/nikoshlight"
+                    />
 
 
             </LinearLayout>

@@ -110,18 +110,35 @@
 
 
                    <Spinner
+                       android:background="@drawable/boder_edittext"
                        android:id="@+id/genderSp"
                        android:layout_width="match_parent"
-                       android:layout_height="wrap_content"
+                       android:layout_height="30dp"
                        android:textAlignment="center" />
 
 
 
                <Spinner
-
+                   android:layout_marginTop="5dp"
                    android:id="@+id/bloodgrpSp"
                    android:layout_width="match_parent"
-                   android:layout_height="wrap_content"
+                   android:layout_height="30dp"
+                   android:background="@drawable/boder_edittext"
+                   android:textAlignment="center" />
+
+               <Spinner
+                   android:id="@+id/donnerSP"
+                   android:background="@drawable/boder_edittext"
+                   android:layout_width="match_parent"
+                   android:layout_marginTop="5dp"
+                   android:layout_height="30dp"
+                   android:textAlignment="center" />
+               <Spinner
+                   android:id="@+id/districSP"
+                   android:background="@drawable/boder_edittext"
+                   android:layout_width="match_parent"
+                   android:layout_marginTop="5dp"
+                   android:layout_height="30dp"
                    android:textAlignment="center" />
 
 

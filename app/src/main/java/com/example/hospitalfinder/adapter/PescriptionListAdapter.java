@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.hospitalfinder.R;
 import com.example.hospitalfinder.pojos.PescriptionPojo;
+import com.example.hospitalfinder.utils.Helper;
 
 import java.util.List;
 
@@ -36,10 +37,24 @@ public class PescriptionListAdapter extends RecyclerView.Adapter<PescriptionList
     @Override
     public void onBindViewHolder(@NonNull PescriptionViewHolder holder, int position) {
 
+        String apoinmentDate = pescriptionPojoList.get(position).getApoinmentDate();
+
+       long leftDate = Helper.getDefferentBetweenTwoDate(Helper.getCrrentDate(),apoinmentDate);
+
         holder.hospitalNameTv.setText(pescriptionPojoList.get(position).getHospitalName());
         holder.doctorNameTV.setText(pescriptionPojoList.get(position).getDoctorName());
         holder.doctorPhoneTV.setText(pescriptionPojoList.get(position).getDoctorPhone());
         holder.apoinmentDateTV.setText(pescriptionPojoList.get(position).getApoinmentDate());
+
+        if (leftDate==0)
+        {
+            holder.daysLeftTV.setText("Visited");
+
+        }
+        else
+        {
+            holder.daysLeftTV.setText(String.valueOf(leftDate)+" Days Left");
+        }
 
     }
 
@@ -50,7 +65,7 @@ public class PescriptionListAdapter extends RecyclerView.Adapter<PescriptionList
     }
 
     class PescriptionViewHolder extends RecyclerView.ViewHolder {
-        TextView hospitalNameTv,doctorNameTV,doctorPhoneTV,apoinmentDateTV;
+        TextView hospitalNameTv,doctorNameTV,doctorPhoneTV,apoinmentDateTV,daysLeftTV;
 
         public PescriptionViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -58,6 +73,7 @@ public class PescriptionListAdapter extends RecyclerView.Adapter<PescriptionList
             doctorNameTV = itemView.findViewById(R.id.doctorNameTV);
             doctorPhoneTV = itemView.findViewById(R.id.doctorPhoneTV);
             apoinmentDateTV = itemView.findViewById(R.id.apoinmentDateTV);
+            daysLeftTV = itemView.findViewById(R.id.dayLeftTV);
         }
     }
 

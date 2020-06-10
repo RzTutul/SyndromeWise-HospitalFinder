@@ -1,6 +1,7 @@
 package com.example.hospitalfinder.repos;
 
 import android.os.Environment;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
@@ -16,6 +17,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static androidx.constraintlayout.widget.Constraints.TAG;
 
 public class PescriptionRespos {
     private FirebaseUser firebaseUser;
@@ -33,20 +36,21 @@ public class PescriptionRespos {
         userRef = rootRef.child(firebaseUser.getUid());
         pescriptionRef = userRef.child("PescriptionList");
 
+        pescriptionRef.keepSynced(true);
+
         userID = firebaseUser.getUid();
 
     }
     public void AddNewPescription(PescriptionPojo pescriptionPojo)
     {
-        String pescriptionID = pescriptionPojo.getP_id();
+        String pescriptionID = pescriptionRef.push().getKey();
         pescriptionPojo.setP_id(pescriptionID);
-        pescriptionPojo.setUser_Id(userID);
+        pescriptionRef.child(pescriptionPojo.getP_id()).setValue(pescriptionPojo);
 
-        pescriptionRef.child(pescriptionPojo.getUser_Id()).child(pescriptionID).setValue(pescriptionPojo);
+        Log.i(TAG, "AddNewPescription: ");
     }
     public MutableLiveData<List<PescriptionPojo>> getAllPescription(){
-        pescriptionRef.child(userID)
-                .addValueEventListener(new ValueEventListener() {
+        pescriptionRef.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         List<PescriptionPojo> pescriptionPojos = new ArrayList<>();
