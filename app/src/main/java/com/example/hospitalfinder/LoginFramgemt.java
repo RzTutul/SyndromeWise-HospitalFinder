@@ -25,6 +25,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
+import com.example.hospitalfinder.perf.StoreUserActivity;
 import com.example.hospitalfinder.viewmodel.RegistrationViewModel;
 import com.github.ybq.android.spinkit.SpinKitView;
 import com.github.ybq.android.spinkit.sprite.Sprite;
@@ -42,7 +43,7 @@ public class LoginFramgemt extends Fragment {
     private TextInputEditText passwordET;
     private ProgressBar loginProgressBar;
 
-
+    private StoreUserActivity userActivity;
     private RegistrationViewModel registrationViewModel;
 
     public LoginFramgemt() {
@@ -78,6 +79,7 @@ public class LoginFramgemt extends Fragment {
     @Override
     public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        userActivity = new StoreUserActivity(getActivity());
 
         LinearLayout regstrationBtn = view.findViewById(R.id.registrationBtn);
 
@@ -94,7 +96,7 @@ public class LoginFramgemt extends Fragment {
         loginLayout.setAnimation(imagAnimation1);
 
         //For Change Status bar color
-        ChangeStatusBarColor();
+        //ChangeStatusBarColor();
 
         loginbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -177,7 +179,6 @@ public class LoginFramgemt extends Fragment {
         if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.LOLLIPOP)
         {View decor = getActivity().getWindow().getDecorView();
             Window window = getActivity().getWindow();
-
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.setStatusBarColor(Color.RED);
 

@@ -46,7 +46,7 @@ public class NearbyLocationFragment extends Fragment {
     private LocationViewModel locationViewModel;
     String findLocaitonName;
 
-    String hospital="hospital",pharmacy="pharmacy",ambulance="ambulance";
+    String hospital="hospital",pharmacy="pharmacy",ambulance="ambulance",coronainfo="coroninfo";
     public NearbyLocationFragment() {
         // Required empty public constructor
     }
@@ -79,6 +79,12 @@ public class NearbyLocationFragment extends Fragment {
         {
             findLocaitonName = "ambulance";
         }
+
+           else if (coronainfo.equals(getArguments().getString("coroninfo")))
+        {
+            findLocaitonName = "coroninfo";
+        }
+
         else
         {
           findLocaitonName = getArguments().getString("locaitonName");

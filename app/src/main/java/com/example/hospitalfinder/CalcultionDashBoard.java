@@ -19,7 +19,7 @@ import android.view.ViewGroup;
  */
 public class CalcultionDashBoard extends Fragment {
 
-    CardView medicineCV;
+    CardView medicineCV,bmiCard,waterCV;
 
     public CalcultionDashBoard() {
         // Required empty public constructor
@@ -38,11 +38,26 @@ public class CalcultionDashBoard extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         medicineCV = view.findViewById(R.id.medicineCV);
+        bmiCard = view.findViewById(R.id.bmiCard);
+        waterCV = view.findViewById(R.id.waterCV);
 
         medicineCV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Navigation.findNavController(getActivity(),R.id.nav_host_fragment).navigate(R.id.medicineReminderFragment);
+            }
+        });
+
+        bmiCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(getActivity(),R.id.nav_host_fragment).navigate(R.id.BMIFrag);
+            }
+        });
+        waterCV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(getActivity(),R.id.nav_host_fragment).navigate(R.id.waterReminderFrag);
             }
         });
     }

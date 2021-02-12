@@ -2,25 +2,42 @@ package com.example.hospitalfinder;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.NotificationCompat;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.NavController;
 import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;
 
+import android.app.AlarmManager;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.andremion.floatingnavigationview.FloatingNavigationView;
+import com.example.hospitalfinder.pojos.userInformationPojo;
+import com.example.hospitalfinder.utils.NotificationReceiver;
 import com.example.hospitalfinder.viewmodel.RegistrationViewModel;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 import devlight.io.library.ntb.NavigationTabBar;
 
@@ -30,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
     private NavigationTabBar navigationTabBar;
     private ArrayList<NavigationTabBar.Model> models;
     RegistrationViewModel registrationViewModel;
+    private boolean isExit = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +64,19 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 mFloatingNavigationView.open();
-                mFloatingNavigationView.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#009688")));
+                mFloatingNavigationView.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#355c7d")));
+
+                View headerView = mFloatingNavigationView.getHeaderView(0);
+                TextView navUsername = headerView.findViewById(R.id.nav_userName);
+                TextView navEmail = headerView.findViewById(R.id.nav_email);
+                registrationViewModel.getUserInfo().observe(MainActivity.this, new Observer<userInformationPojo>() {
+                    @Override
+                    public void onChanged(userInformationPojo userInformationPojo) {
+                        navUsername.setText(userInformationPojo.getUserName());
+                        navEmail.setText(userInformationPojo.getUserEmail());
+                    }
+                });
+
             }
         });
 
@@ -70,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
                         navigationTabBar.setVisibility(View.GONE);
                         break;
                     case R.id.mainDashBoard:
-                        //  isExit = true;
+                       isExit = true;
                         navigationTabBar.setVisibility(View.VISIBLE);
                         toolbar.setVisibility(View.VISIBLE);
                         mFloatingNavigationView.show();
@@ -88,24 +118,22 @@ public class MainActivity extends AppCompatActivity {
                         mFloatingNavigationView.show();
                         break;
                     case R.id.NearByLocationFragment:
-                        //  isExit = true;
+                          isExit = false;
                         toolbar.setVisibility(View.VISIBLE);
                         mFloatingNavigationView.show();
                         break;
 
                     case R.id.blogpost:
-                        //  isExit = true;
+                          isExit = true;
                         toolbar.setVisibility(View.VISIBLE);
                         mFloatingNavigationView.show();
                         break;
 
 
-
-
                     default:
                         toolbar.setVisibility(View.GONE);
                         mFloatingNavigationView.hide();
-                        //isExit = false;
+                        isExit = false;
                         break;
                 }
             }
@@ -214,7 +242,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                 }
 
-                Snackbar.make((View) mFloatingNavigationView.getParent(), item.getTitle() + " Selected!", Snackbar.LENGTH_SHORT).show();
+                //Snackbar.make((View) mFloatingNavigationView.getParent(), item.getTitle() + " Selected!", Snackbar.LENGTH_SHORT).show();
                 mFloatingNavigationView.close();
                 return true;
             }
@@ -227,8 +255,35 @@ public class MainActivity extends AppCompatActivity {
     public void onBackPressed() {
         if (mFloatingNavigationView.isOpened()) {
             mFloatingNavigationView.close();
-        } else {
+        }
+
+        else if (isExit) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Exit App");
+            builder.setMessage("Are you sure you want to exit?")
+                    .setCancelable(false)
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            MainActivity.this.finish();
+                        }
+                    })
+                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.cancel();
+                        }
+                    });
+            AlertDialog alert = builder.create();
+            alert.show();
+        }
+
+        else {
             super.onBackPressed();
         }
     }
-}
+    }
+
+
+
+
+
+

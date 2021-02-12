@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".WaterReminderFrag">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:title="Water Reminder"
+            app:titleTextColor="@color/colorWhite"
+            />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="50dp"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <pl.droidsonroids.gif.GifImageView
+                android:id="@+id/dashboardImage"
+                android:layout_width="wrap_content"
+                android:layout_height="200dp"
+                android:layout_gravity="center"
+                android:scaleType="fitXY"
+                android:src="@drawable/drinkingwater"
+                app:layout_collapseMode="parallax" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/medicineET"
+                    android:background="@drawable/boder_edittext"
+                    android:layout_width="match_parent"
+                    android:gravity="center"
+                    android:layout_height="60dp"
+                    android:hint="Title" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:gravity="center"
+          >
+
+          <LinearLayout
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:orientation="vertical"
+              >
+              <TextView
+                  android:layout_gravity="center"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="Hours"
+                  android:textSize="20sp"
+                  android:textColor="@color/colorPrimary"
+                  />
+              <com.shawnlin.numberpicker.NumberPicker
+                  android:layout_margin="15dp"
+                  android:id="@+id/number_picker1"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  app:np_dividerColor="@color/colorPrimary"
+                  app:np_formatter="@string/number_picker_formatter"
+                  app:np_height="180dp"
+                  app:np_max="12"
+                  app:np_min="0"
+                  app:np_selectedTextColor="@color/colorPrimary"
+                  app:np_selectedTextSize="25dp"
+                  app:np_textColor="@android:color/black"
+                  app:np_textSize="30dp"
+                  app:np_value="0"
+                  app:np_width="64dp" />
+
+          </LinearLayout>          <LinearLayout
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:orientation="vertical"
+              >
+              <TextView
+                  android:layout_gravity="center"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="Minutes"
+                  android:textSize="20sp"
+                  android:textColor="@color/colorPrimary"
+                  />
+              <com.shawnlin.numberpicker.NumberPicker
+                  android:layout_margin="15dp"
+                  android:id="@+id/number_picker2"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  app:np_dividerColor="@color/colorPrimary"
+                  app:np_formatter="@string/number_picker_formatter"
+                  app:np_height="180dp"
+                  app:np_max="60"
+                  app:np_min="0"
+                  app:np_selectedTextColor="@color/colorPrimary"
+                  app:np_selectedTextSize="25dp"
+                  app:np_textColor="@android:color/black"
+                  app:np_textSize="30dp"
+                  app:np_value="30"
+                  app:np_width="64dp" />
+
+          </LinearLayout>
+
+
+
+      </LinearLayout>
+
+            <Button
+                android:layout_marginTop="15dp"
+                android:background="@drawable/gradient_button_shape"
+                android:id="@+id/saveMedicinebtn"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Save" />
+
+
+
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

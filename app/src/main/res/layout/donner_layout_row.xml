@@ -5,6 +5,7 @@
     android:layout_height="100dp"
     android:orientation="vertical"
     app:cardCornerRadius="5dp"
+    android:layout_margin="4dp"
     app:cardElevation="4dp">
 
     <RelativeLayout
@@ -15,7 +16,7 @@
             android:layout_centerVertical="true"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:src="@drawable/ic_person_black_24dp"
+            android:src="@drawable/user_image"
             />
 
         <TextView

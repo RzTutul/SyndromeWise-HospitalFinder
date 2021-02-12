@@ -41,13 +41,12 @@ import static android.content.Context.CONNECTIVITY_SERVICE;
 
 public class MainDashBoard extends Fragment {
 
-    CardView hospitalCard,docatorCard,pharmacyCard,prescriptionCard,bloodDonerCard,ambulanceCard;
+    CardView hospitalCard,card_view_corona,pharmacyCard,prescriptionCard,bloodDonerCard,ambulanceCard;
 
     AutoCompleteTextView autoCompleteTextView;
 
     String [] syndromeName;
     ImageView dashBoardImage;
-    int[] dashboardImages ={R.drawable.image,R.drawable.images,R.drawable.images2};
 
     boolean isConnected = true;
 
@@ -76,6 +75,7 @@ public class MainDashBoard extends Fragment {
      //   getActivity().registerReceiver(mynetConnection, new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
 
         hospitalCard = view.findViewById(R.id.card_view_hospital);
+        card_view_corona = view.findViewById(R.id.card_view_corona);
         ambulanceCard = view.findViewById(R.id.card_view_ambulance);
         pharmacyCard = view.findViewById(R.id.card_view_parmacy);
         prescriptionCard = view.findViewById(R.id.card_view_pescription);
@@ -84,10 +84,6 @@ public class MainDashBoard extends Fragment {
         autoCompleteTextView =view.findViewById(R.id.autoCompleteSyndrome);
 
         dashBoardImage = view.findViewById(R.id.dashboardImage);
-
-        Random random = new Random();
-        int n = random.nextInt(3);
-        dashBoardImage.setBackgroundResource(dashboardImages[n]);
 
         LinearLayout dashboardoption = view.findViewById(R.id.dashboardOption);
         Animation animation = AnimationUtils.loadAnimation(getActivity(),R.anim.animation_above);
@@ -161,6 +157,23 @@ public class MainDashBoard extends Fragment {
                     Bundle bundle = new Bundle();
                     bundle.putString("hospital","hospital");
                     Navigation.findNavController(getActivity(),R.id.nav_host_fragment).navigate(R.id.NearByLocationFragment,bundle);
+
+                }
+                else
+                {
+                    Snackbar.make(getView(),"no internet connection",Snackbar.LENGTH_SHORT).show();
+
+                }
+
+
+            }
+        });
+        card_view_corona.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isConnected)
+                {
+                    Navigation.findNavController(getActivity(),R.id.nav_host_fragment).navigate(R.id.coronaInfoFrag);
 
                 }
                 else

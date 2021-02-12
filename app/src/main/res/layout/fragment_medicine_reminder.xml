@@ -14,7 +14,6 @@
         android:layout_marginTop="?android:attr/actionBarSize"
         android:fitsSystemWindows="true"
         android:theme="@style/ThemeOverlay.MaterialComponents.Dark">
-
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -58,34 +57,31 @@
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/medicineET"
+                    android:background="@drawable/boder_edittext"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_height="60dp"
                     android:hint="Enter medicine Name" />
             </com.google.android.material.textfield.TextInputLayout>
 
+         <TimePicker
+             android:id="@+id/timePicker"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:timePickerMode="spinner"
+             />
 
 
             <Button
+                android:layout_marginTop="15dp"
+                android:background="@drawable/gradient_button_shape"
                 android:id="@+id/saveMedicinebtn"
-                android:layout_width="wrap_content"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="Save" />
 
-            <TextView
-                android:textSize="20sp"
-                android:background="@drawable/shadow"
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
 
-            <ImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:background="@drawable/shadow"
-               android:src="@drawable/imagelogo"
-                />
 
 
         </LinearLayout>

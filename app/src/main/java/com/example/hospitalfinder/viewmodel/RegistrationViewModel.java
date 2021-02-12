@@ -70,5 +70,9 @@ public class RegistrationViewModel extends ViewModel {
         donnerLD = firebaseLoginRepository.getDonnerList();
     }
 
+    public MutableLiveData<userInformationPojo> getUserInfo() {
+       return userInfoLD = firebaseLoginRepository.getUserInfo();
+    }
+
 
 }

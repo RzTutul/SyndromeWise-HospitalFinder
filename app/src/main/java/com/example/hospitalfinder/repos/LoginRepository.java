@@ -1,6 +1,7 @@
 package com.example.hospitalfinder.repos;
 
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
@@ -31,6 +32,7 @@ public class LoginRepository {
     private MutableLiveData<RegistrationViewModel.AuthenticationState> stateLiveData;
    private MutableLiveData<String> errMsg = new MutableLiveData<>();
    private MutableLiveData<List<DonnerPojo>> donnerLD = new MutableLiveData<>();
+    public MutableLiveData<userInformationPojo> userInfoLD = new MutableLiveData<>();
 
 
     FirebaseAuth firebaseAuth;
@@ -127,7 +129,12 @@ public class LoginRepository {
         donnerList.child(donner_id).setValue(donnerPojo).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
-
+                Log.i(TAG, "onSuccess: "+donner_id);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.i(TAG, "onFailure: "+e.getLocalizedMessage());
             }
         });
     }
@@ -158,5 +165,32 @@ public class LoginRepository {
         });
 
         return donnerLD;
+    }
+
+
+    public MutableLiveData<userInformationPojo> getUserInfo() {
+        rootRef = FirebaseDatabase.getInstance().getReference();
+
+        userInfo = rootRef.child(firebaseUser.getUid()).child("Loginfo");
+        userInfo.keepSynced(true);
+
+        userInfo.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+               userInformationPojo userInformationPojo = new userInformationPojo();
+
+                    userInformationPojo = (dataSnapshot.getValue(userInformationPojo.class));
+
+                userInfoLD.postValue(userInformationPojo);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        return userInfoLD;
     }
 }

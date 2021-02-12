@@ -215,6 +215,7 @@ public class RegistrationFragment extends Fragment {
 
                     if (bloodDonner.equals("Yes"))
                     {
+                        Log.i(TAG, "onClick: "+bloodDonner);
                         DonnerPojo donnerPojo = new DonnerPojo(null,name,select_gender,phone,select_distric);
                         registrationViewModel.AddDonnerList(donnerPojo);
                     }

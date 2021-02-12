@@ -95,14 +95,16 @@ public class BlogPostAdapter extends RecyclerView.Adapter<BlogPostAdapter.PostVi
             public void onClick(View v) {
                 Items items = itemsList.get(position);
                 //Parse HTML to textContent
-                Document document = Jsoup.parse(items.getContent());
+               // Document document = Jsoup.parse(items.getContent());
 
                 String title = items.getTitle();
-                String post = document.text();
+               // String post =   document.text();
+                String post =   Jsoup.parse(items.getContent()).wholeText();;
+
 
                 Bundle bundle = new Bundle();
                 bundle.putString("title",title);
-                bundle.putString("post",post);
+                bundle.putString("post",post.trim().toString());
                 bundle.putString("imgUrl",imageUrl.get(position));
                 Navigation.findNavController(holder.itemView).navigate(R.id.blogPostDetailsFragment,bundle);
 

@@ -48,7 +48,12 @@ public class PescriptionListAdapter extends RecyclerView.Adapter<PescriptionList
 
         if (leftDate==0)
         {
-            holder.daysLeftTV.setText("Visited");
+            holder.daysLeftTV.setText("Today");
+
+        }
+           else if (leftDate<0)
+        {
+            holder.daysLeftTV.setText("End appointment");
 
         }
         else

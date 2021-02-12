@@ -62,12 +62,14 @@
                     android:layout_marginLeft="4dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center"
                     >
                     <TextView
                         android:textColor="@android:color/white"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Next Appoitnment-"
+                        android:text="Next Appointment-"
                         android:textSize="12sp"
                         android:fontFamily="@font/nikoshlight"
                         />

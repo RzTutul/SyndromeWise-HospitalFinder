@@ -28,10 +28,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/nikoshlight"
+                    android:fontFamily="sans-serif-condensed-medium"
                     android:gravity="top"
                     android:text="Latest Artcles"
-                    android:textColor="#FFE700"
+                    android:textColor="@color/colorPrimary"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
@@ -54,9 +54,9 @@
 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/nikoshlight"
+                    android:fontFamily="sans-serif-condensed-medium"
                     android:text="Trending Artcles"
-                    android:textColor="#FFE700"
+                    android:textColor="@color/colorPrimary"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
@@ -76,13 +76,14 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/nikoshlight"
-                    android:text="All Artcles-------->"
-                    android:textColor="#FFE700"
+                    android:fontFamily="sans-serif-condensed-medium"
+                    android:text="All Artcles"
+                    android:textColor="@color/colorPrimary"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
                 <androidx.recyclerview.widget.RecyclerView
+                    android:layout_marginTop="5dp"
                     android:minHeight="50dp"
                     android:id="@+id/allArticleRV"
                     android:layout_width="match_parent"

@@ -6,6 +6,9 @@
     <string name="blog_api_key">AIzaSyBS02dyIkgjIZjwoK1uXD7Uc6mFnZtkiNc</string>
     <string name="blog_id">7767575629628691681</string>
 
+
+    <string name="number_picker_formatter">%02d</string>
+
     <string-array name="gender">
         <item>Select Gender</item>
         <item>Male</item>
@@ -25,6 +28,9 @@
     </string-array>
     <string-array name="colors">
         <item>#FCD1D9E2</item>
+        <item>#fcb99c</item>
+        <item>#f67280</item>
+        <item>#c06c84</item>
         <item>#FF5722</item>
         <item>#76FF03</item>
         <item>#F44336</item>
@@ -45,17 +51,17 @@
     <string name="skip">SKIP</string>
     <string name="start">GOT IT</string>
 
-    <string name="slide_1_title">Hello Food!</string>
-    <string name="slide_1_desc">The easiest way to order food from your favourite restaurant!</string>
+    <string name="slide_1_title">Doctor Appointment</string>
+    <string name="slide_1_desc">The easiest way to save doctor appointment!</string>
 
-    <string name="slide_2_title">Movie Tickets</string>
-    <string name="slide_2_desc">Book movie tickets for your family and friends!</string>
+    <string name="slide_2_title">Nearby Hospital</string>
+    <string name="slide_2_desc">Easily find out near by hospital via syndrome wise !</string>
 
-    <string name="slide_3_title">Great Discounts</string>
-    <string name="slide_3_desc">Best discounts on every single service we offer!</string>
+    <string name="slide_3_title">Nearby pharmacy</string>
+    <string name="slide_3_desc">Easy Find out nearby pharmacy!</string>
 
-    <string name="slide_4_title">World Travel</string>
-    <string name="slide_4_desc">Book tickets of any transportation and travel the world!</string>
+    <string name="slide_4_title">Emergency Contract</string>
+    <string name="slide_4_desc">Find near by Ambulance with their contract number</string>
 
     <string name="play_again_desc">To see the welcome slider again, goto Settings -> apps -> welcome slider -> clear data</string>
     <string name="play_again">Play Again</string>

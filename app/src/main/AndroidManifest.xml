@@ -27,6 +27,8 @@
             </intent-filter>
         </activity>
 
+        <receiver
+            android:name=".utils.NotificationReceiver"></receiver>
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.example.hospitalfinder"

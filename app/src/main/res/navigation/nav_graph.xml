@@ -73,4 +73,19 @@
         android:name="com.example.hospitalfinder.BloodDonnerListFragment"
         android:label="fragment_blood_donner_list"
         tools:layout="@layout/fragment_blood_donner_list" />
+    <fragment
+        android:id="@+id/coronaInfoFrag"
+        android:name="com.example.hospitalfinder.CoronaInfoFrag"
+        android:label="fragment_corona_info"
+        tools:layout="@layout/fragment_corona_info" />
+    <fragment
+        android:id="@+id/BMIFrag"
+        android:name="com.example.hospitalfinder.BMIFrag"
+        android:label="fragment_b_m_i"
+        tools:layout="@layout/fragment_b_m_i" />
+    <fragment
+        android:id="@+id/waterReminderFrag"
+        android:name="com.example.hospitalfinder.WaterReminderFrag"
+        android:label="fragment_water_reminder"
+        tools:layout="@layout/fragment_water_reminder" />
 </navigation>

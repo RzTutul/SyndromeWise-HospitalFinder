@@ -8,9 +8,12 @@
         android:title="Home" />
     <item
         android:icon="@drawable/logopescription"
-        android:title="About" />
-    <item android:title="test" />
-    <item android:title="test2" />
+        android:title="About us" />
+    <item
+        
+        android:icon="@drawable/logopescription"
+        android:title="Share App" />
+
     <item
         android:id="@+id/logoutID"
         android:icon="@drawable/ic_exit_to_app_black_24dp"
